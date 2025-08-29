@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/id_cons1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/homepagebackgroundshape"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/nameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/cross"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cross"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            />
+        <View
+            android:id="@+id/view_lime"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            app:layout_constraintTop_toBottomOf="@+id/nameView"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="#E8E8E8" />
+
+
+        <ImageView
+            android:id="@+id/view_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toBottomOf="@id/view_lime"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

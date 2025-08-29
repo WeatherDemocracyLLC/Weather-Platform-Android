@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/constraintLayout">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/votinglistimage"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginLeft="@dimen/_15ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@drawable/edit_profileicon" />
+
+    <TextView
+        android:id="@+id/votername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_toRightOf="@+id/votinglistimage"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Amit Chaudhary"
+        android:textColor="#000000"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/temperatureindegree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/votername"
+        android:layout_marginLeft="@dimen/_15ssp"
+        android:layout_toRightOf="@+id/votinglistimage"
+        android:drawableLeft="@drawable/dot_icon"
+        android:drawablePadding="@dimen/_5sdp"
+        android:text="28"
+        android:textSize="@dimen/_10sdp" />
+
+    <TextView
+        android:id="@+id/tvspeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/votername"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_toRightOf="@+id/temperatureindegree"
+        android:drawableLeft="@drawable/dot_icon"
+        android:drawablePadding="@dimen/_3sdp"
+        android:text="High" />
+
+    <TextView
+        android:id="@+id/typeofspeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/votername"
+        android:layout_marginLeft="@dimen/_2sdp"
+        android:layout_toRightOf="@+id/tvspeed"
+        android:drawableLeft="@drawable/dot_icon"
+        android:drawablePadding="@dimen/_3sdp"
+        android:text="Rainy" />
+
+    <ImageView
+        android:id="@+id/locationicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temperatureindegree"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_toRightOf="@+id/votinglistimage"
+        android:src="@drawable/locationicon2" />
+
+    <TextView
+        android:id="@+id/locationname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temperatureindegree"
+        android:layout_marginLeft="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_toRightOf="@+id/locationicon"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Madison"
+        android:textSize="@dimen/_10sdp" />
+
+    <ImageView
+        android:id="@+id/cloudyicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:src="@drawable/claudyicon2" />
+
+    <View
+        android:id="@+id/view_lime"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/locationname"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="#E8E8E8" />
+</RelativeLayout>

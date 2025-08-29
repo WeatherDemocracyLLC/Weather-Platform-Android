@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainCons"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainConsprev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:context=".activities.metrologistactivity.MetrologistPostActivity">
+
+            <!-- User Info Section -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutNames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ImgProfile"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/edit_profileicon"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtUserNames"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text=""
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintLeft_toRightOf="@+id/ImgProfile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Image Slider -->
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/ImagesSliderProfileHomeUser"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_330sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutNames"
+                app:sliderStartAutoCycle="false"
+                app:sliderIndicatorEnabled="true" />
+
+            <!-- Single Image -->
+            <ImageView
+                android:id="@+id/singleimageonly"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_330sdp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutNames" />
+
+            <!-- Video Player -->
+            <com.google.android.exoplayer2.ui.StyledPlayerView
+                android:id="@+id/video_player"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_340sdp"
+                android:hardwareAccelerated="true"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutNames"
+                app:resize_mode="fill"
+                app:show_buffering="when_playing" />
+
+            <!-- Like & Comment Section -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/laytoutLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_381sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <ImageView
+                    android:id="@+id/ImgLikes"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:src="@drawable/metrologistlikeicon"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imgdisloke"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:src="@drawable/likesicons"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Comment & Share -->
+            <ImageView
+                android:id="@+id/imgComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_392sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:src="@drawable/commenticon"
+                app:layout_constraintLeft_toRightOf="@+id/laytoutLikes"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/share_btn"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_392sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/share_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TxtLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Likes |"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgComment" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/TxtLike"
+                app:layout_constraintTop_toBottomOf="@+id/imgComment"
+                android:text="20 Comments"
+                android:id="@+id/txtComment"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_10sdp"/>
+
+            <!-- Comments Text -->
+            <TextView
+                android:id="@+id/txtComments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit... more"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TxtLike" />
+
+            <TextView
+                android:layout_width="0dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/txtComments"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:id="@+id/txtdates"
+                android:fontFamily="@font/poppins_semibold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="25 August at 15:40"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:id="@+id/viewmetro"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/grey"
+                app:layout_constraintTop_toBottomOf="@+id/txtdates"/>
+
+
+            <!-- RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylerviewCommenstmetroonpage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/viewmetro" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+
+
+
+
+
+
+    <!--
+
+
+
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <layout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mainCons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+       <ScrollView
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:fillViewport="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/mainConsprev"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:context=".activities.metrologistactivity.MetrologistPostActivity">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutNames"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:id="@+id/ImgProfile"
+                    android:layout_height="@dimen/_40sdp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/edit_profileicon"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginLeft="@dimen/_10sdp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@+id/ImgProfile"
+                    android:text="David_show"
+                    android:id="@+id/txtUserNames"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/ImagesSliderProfileHomeUser"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_330sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutNames"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorEnabled="true"
+                android:visibility="gone"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="5dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderIndicatorUnselectedColor="@color/white"
+                app:sliderScrollTimeInSec="1"
+                app:sliderStartAutoCycle="false" />
+
+            <ImageView
+                android:id="@+id/singleimageonly"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_330sdp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutNames"
+                android:scaleType="fitXY"
+                android:visibility="gone" />
+
+            <com.google.android.exoplayer2.ui.StyledPlayerView
+                android:id="@+id/video_player"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_340sdp"
+                android:hardwareAccelerated="true"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutNames"
+                app:resize_mode="fill"
+                android:visibility="gone"
+                app:show_buffering="when_playing" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/laytoutLikes"
+                android:layout_marginTop="@dimen/_381sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent">
+                <ImageView
+
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/metrologistlikeicon"
+                    android:id="@+id/ImgLikes"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/likesicons"
+                    android:id="@+id/imgdisloke"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/laytoutLikes"
+                android:src="@drawable/commenticon"
+                android:layout_marginTop="@dimen/_392sdp"
+                android:id="@+id/imgComment"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="@dimen/_15sdp"/>
+
+            <ImageView
+                android:id="@+id/share_btn"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/share_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/_392sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                app:layout_constraintRight_toRightOf="parent"
+
+                />
+
+            <TextView
+                android:id="@+id/TxtLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Likes |"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgComment" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@+id/TxtLike"
+                app:layout_constraintTop_toBottomOf="@+id/imgComment"
+                android:text="20 Comments"
+                android:id="@+id/txtComment"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_10sdp"/>
+            <TextView
+                android:layout_width="0dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/TxtLike"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:id="@+id/txtComments"
+                android:fontFamily="@font/poppins_semibold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt... more "/>
+
+            <TextView
+                android:layout_width="0dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/txtComments"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:id="@+id/txtdates"
+                android:fontFamily="@font/poppins_semibold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="25 August at 15:40"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:id="@+id/viewmetro"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/grey"
+                app:layout_constraintTop_toBottomOf="@+id/txtdates"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylerviewCommenstmetroonpage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/viewmetro"/>
+            />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+       </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>-->

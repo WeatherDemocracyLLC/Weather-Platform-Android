@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/Home"
+        android:title="Home"
+        />
+
+    <item
+        android:id="@+id/Posts"
+        android:title="Posts"/>
+
+    <item
+        android:id="@+id/Photos"
+        android:title="Photos"/>
+    <item
+        android:id="@+id/Mayor"
+        android:title="Mayor"/>
+    <item
+        android:id="@+id/About"
+        android:title="About"/>
+
+
+</menu>

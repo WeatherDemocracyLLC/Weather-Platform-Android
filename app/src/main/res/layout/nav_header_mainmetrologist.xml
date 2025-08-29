@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp"
+            android:background="@color/red"
+            app:titleTextColor="@color/white" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle_imageview"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_20ssp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/back_image" />
+
+        <TextView
+            android:id="@+id/account_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15ssp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_toRightOf="@+id/circle_imageview"
+            android:fontFamily="@font/segoe_ui"
+            android:text="@string/david_shaw"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textEmialId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/account_name"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_toRightOf="@+id/circle_imageview"
+            android:fontFamily="@font/segoe_ui"
+            android:text="@string/txt_david_shaw"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp" />
+
+        <ImageView
+            android:id="@+id/imgcrossiconprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_13sdp"
+            android:src="@drawable/close_icon2" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:backgroundTint="@color/myaccuntcrdclr"
+            app:cardCornerRadius="@dimen/_4sdp">
+
+            <RelativeLayout
+                android:id="@+id/layoutMyAccountMetrologist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/myaccount_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:fontFamily="@font/segoe_ui_bold"
+                    android:text="@string/my_account"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/myaccount_txt"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="Edit Profile, Notification,Weather Mayor,\nForecast Challenge,Select Butterfly"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp" />
+
+
+                <ImageView
+                    android:id="@+id/expand_icon1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/vectordown" />
+                <ImageView
+                    android:id="@+id/downarrows"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:visibility="gone"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/downarrow" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/card_view"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/LayoutItemMyAccountMterologist"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/editprofile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15ssp"
+                    android:drawableStart="@drawable/user_icon2"
+                    android:drawableLeft="@drawable/user_icon2"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_20sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/edit_profile"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+
+                <TextView
+                    android:id="@+id/notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/editprofile"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15ssp"
+                    android:drawableStart="@drawable/notifi_icon"
+                    android:drawableLeft="@drawable/notifi_icon"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_17ssp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/notification"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+
+
+                <TextView
+                    android:id="@+id/WeatherMayor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/notification"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:drawableStart="@drawable/weathermayor_icon"
+                    android:drawableLeft="@drawable/weathermayor_icon"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_13sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/weather_mayor"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:textSize="@dimen/_11ssp" />
+
+                <TextView
+                    android:id="@+id/ForecastChallenge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/WeatherMayor"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/ic_forecast"
+                    android:drawableLeft="@drawable/ic_forecast"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_13sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="Forecast Challenge"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:textSize="@dimen/_11ssp" />
+                <ImageView
+                    android:id="@+id/metIcon"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_below="@+id/ForecastChallenge"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:src="@drawable/icon4"
+                    />
+
+                <TextView
+                    android:id="@+id/selectButterfly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ForecastChallenge"
+                    android:layout_marginLeft="@dimen/_17sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_toRightOf="@+id/metIcon"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_17sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="Select Butterfly"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view2"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:backgroundTint="@color/myaccuntcrdclr"
+            app:cardCornerRadius="@dimen/_4sdp">
+
+            <RelativeLayout
+                android:id="@+id/layoutContentMterologist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/content_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:fontFamily="@font/segoe_ui_bold"
+                    android:text="@string/content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/NewsMetrologist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/content_txt"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/news_metrologist"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/wh_alert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/content_txt"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_toRightOf="@+id/NewsMetrologist"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text=",Weather Alert"
+                    android:textColor="@color/black" />
+
+
+                <ImageView
+                    android:id="@+id/expand_icon2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/vectordown" />
+
+                <ImageView
+                    android:id="@+id/downarrowes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/downarrow"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/card_view3"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/LayoutItemContentMterologist"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/Metrologiste"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:drawableStart="@drawable/metrologist_icon"
+                    android:drawableLeft="@drawable/metrologist_icon"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_14sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:text="Meteorologist"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+
+                <TextView
+                    android:id="@+id/alert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:layout_below="@+id/Metrologiste"
+                    android:drawableStart="@drawable/ic_forecast"
+                    android:drawableLeft="@drawable/ic_forecast"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_14sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:text="Weather Alert"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view4"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:backgroundTint="#F7F5F3"
+            app:cardCornerRadius="4dp">
+
+            <RelativeLayout
+                android:id="@+id/layoutHelpMterologist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/Help_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:text="@string/help"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Help_text"
+                    android:layout_marginLeft="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/faq_s_terms_privacy_policy"
+                    android:textColor="@color/black" />
+                <ImageView
+                    android:id="@+id/expand_icon3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/vectordown" />
+                <ImageView
+                    android:id="@+id/downarrowess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:visibility="gone"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/downarrow" />
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view5"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="@dimen/_4sdp">
+
+            <RelativeLayout
+                android:id="@+id/LayoutItemHelpMterologist"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textPrivacyPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:drawableStart="@drawable/privacypolicy_icon"
+                    android:drawableLeft="@drawable/news_icon"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_15sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/privacy_policy"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+
+                <TextView
+                    android:id="@+id/Terms_Conditions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textPrivacyPolicy"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:drawableStart="@drawable/tmc_icon"
+                    android:drawableLeft="@drawable/tmc_icon"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_12sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/terms_amp_conditions"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+
+                <TextView
+                    android:id="@+id/AboutUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Terms_Conditions"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:drawableStart="@drawable/aboutus_icon"
+                    android:drawableLeft="@drawable/news_icon"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_13sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/about_us"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+
+                <TextView
+                    android:id="@+id/textContactUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/AboutUs"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:drawableStart="@drawable/contactus_icon"
+                    android:drawableLeft="@drawable/news_icon"
+                    android:drawableEnd="@drawable/arrowforword_icon"
+                    android:drawableRight="@drawable/arrowforword_icon"
+                    android:drawablePadding="@dimen/_14sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/contact_us"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view6"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:backgroundTint="@color/myaccuntcrdclr"
+            app:cardCornerRadius="@dimen/_4sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/logoutmetrologist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_17sdp"
+                    android:layout_marginTop="@dimen/_13sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:drawableLeft="@drawable/logoutmetrologistimg"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/segoe_ui"
+                    android:text="@string/logout"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/_11ssp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/constraintLayout">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/votinglistimage"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@drawable/edit_profileicon"
+
+        />
+
+    <TextView
+        android:id="@+id/votername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15ssp"
+        android:layout_marginTop="@dimen/_17sdp"
+        android:layout_toRightOf="@+id/votinglistimage"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Christian"
+        android:textColor="#000000"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+
+    <View
+        android:id="@+id/view_lime"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_below="@+id/votername"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="#E8E8E8" />
+
+</RelativeLayout>

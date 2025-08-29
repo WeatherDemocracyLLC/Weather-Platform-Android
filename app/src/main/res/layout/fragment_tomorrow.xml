@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:windowSoftInputMode="stateVisible|adjustResize"
+    tools:context=".fragment.TomorrowFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/id_cons1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginRight="@dimen/_10ssp"
+        android:background="@drawable/homepagebackgroundshape"
+        android:padding="@dimen/_8sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/texttemptomorrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Select High or Low Temprature"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_45sdp"
+           android:id="@+id/consspiner"
+           android:layout_centerInParent="true"
+           android:layout_marginLeft="@dimen/_10ssp"
+           android:layout_marginTop="@dimen/_5ssp"
+           android:background="@drawable/grey_resource"
+           android:layout_marginRight="@dimen/_10ssp"
+           app:layout_constraintLeft_toLeftOf="parent"
+           app:layout_constraintRight_toRightOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/texttemptomorrow">
+
+
+
+        <Spinner
+            android:id="@+id/editselecttemprature"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+
+            android:drawableEnd="@drawable/arrowdown"
+            android:fontFamily="@font/poppins_semibold"
+            android:hint="Select Temperature"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+            />
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textentertempvalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Enter temp. value"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/consspiner" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edithinttemp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_5ssp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/grey_resource"
+            android:fontFamily="@font/poppins_semibold"
+            android:hint="Hint : 28"
+            android:hardwareAccelerated="true"
+             android:inputType="number"
+            android:paddingLeft="@dimen/_10ssp"
+            android:paddingTop="@dimen/_7sdp"
+            android:paddingBottom="@dimen/_7sdp"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/ViewTomorrow"
+            app:layout_constraintTop_toBottomOf="@id/textentertempvalue"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <View
+            android:id="@+id/ViewTomorrow"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textentertempvalue" />
+
+        <TextView
+            android:id="@+id/textSelectlist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Select precipitation"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintLeft_toRightOf="@id/ViewTomorrow"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/consspiner" />
+
+        <TextView
+            android:id="@+id/editSelect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5ssp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/grey_resource"
+            android:drawableEnd="@drawable/arrowdown"
+            android:drawableRight="@drawable/arrowdown"
+            android:drawablePadding="@dimen/_10ssp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingLeft="@dimen/_10ssp"
+            android:paddingTop="@dimen/_7sdp"
+            android:paddingRight="@dimen/_10ssp"
+            android:paddingBottom="@dimen/_7sdp"
+            android:text="Select"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintLeft_toRightOf="@+id/ViewTomorrow"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textentertempvalue"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/btnsubmittomorw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15ssp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/buttonshape"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editSelect" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrainttomorrow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10ssp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_cons1">
+
+        <ImageView
+            android:id="@+id/imgtopbackkk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/topback"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img322"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:src="@drawable/hometop5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@id/layoutMayorodthecitry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@+id/imgtopbackkk">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgwinning"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginLeft="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@drawable/winnericon"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/imagehomegrupuser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_20ssp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/poppins_italic"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgwinning" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imagehomelogouser"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:src="@drawable/home3logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/imgwinning"
+                android:id="@+id/txtcomingsoon"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:text="Mayor of the city \n Coming soon"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

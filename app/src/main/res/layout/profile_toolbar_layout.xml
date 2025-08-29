@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/id_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:elevation="0dp">
+
+
+        <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/arrowbackimg"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20ssp"
+            android:layout_marginTop="@dimen/_15ssp"
+            android:layout_toEndOf="@+id/ic_back"
+            android:text="Search"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_15ssp"
+            android:layout_marginRight="@dimen/_20ssp"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/notificationicon" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

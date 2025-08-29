@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.fragment.ProfileFragmentmetrologist">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sdsdsdsd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_userprofilebackimage"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgprofilebackuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/profileheaderimg"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/imgprofileicon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/edit_profileicon" />
+
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/imgbadgeszero"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+
+            <TextView
+                android:id="@+id/textdavidshaw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15ssp"
+                android:text=""
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgProfile" />
+
+            <TextView
+                android:id="@+id/text21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_35sdp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintRight_toLeftOf="@+id/textFollowing2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textPosts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:text="Posts"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintRight_toLeftOf="@+id/textFollowing2"
+                app:layout_constraintTop_toBottomOf="@+id/text21" />
+
+            <TextView
+                android:id="@+id/text63"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_50sdp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintRight_toLeftOf="@+id/textFollowing1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textFollowing2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:text="Followers"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintRight_toLeftOf="@+id/textFollowing1"
+                app:layout_constraintTop_toBottomOf="@+id/text21" />
+
+            <TextView
+                android:id="@+id/text64444"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20ssp"
+                android:layout_marginRight="@dimen/_40sdp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textFollowing1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="25dp"
+                android:text="Following"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/textPosts"
+                app:layout_constraintTop_toBottomOf="@+id/text21" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constrainteditpeofileMetrologist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/editprofileshape"
+                android:padding="@dimen/_8sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textdavidshaw">
+
+                <ImageView
+                    android:id="@+id/imgprofileediticon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:background="@drawable/profileediticon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/buttoneditpeofil"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/buttoneditpeofil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:text="Edit Profile"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- <Button
+                 android:layout_width="@dimen/_200sdp"
+                 android:layout_height="@dimen/_40sdp"
+                 android:textColor="@color/white"
+                 android:textSize="@dimen/_14sdp"
+                 android:id="@+id/buttoneditpeofile"
+                 android:text="Edit Profile"
+                 android:layout_marginTop="@dimen/_20ssp"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 android:layout_marginBottom="@dimen/_10sdp"
+                 android:drawableStart="@drawable/profileediticon"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 android:drawablePadding="@dimen/_10ssp"
+                 app:layout_constraintTop_toBottomOf="@id/textdavidshaw"
+                 android:background="@drawable/editprofileshape"
+                 android:padding="14dp"
+                 android:drawableLeft="@drawable/profileediticon"
+                 />-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/simpleTabLayoutProfileMetrologoist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoe_ui"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sdsdsdsd"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/red"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/red"
+            app:tabTextAppearance="@style/CustomTabText"
+            tools:ignore="SpeakableTextPresentCheck">
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/ViewPagerprofileMetrologoist"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simpleTabLayoutProfileMetrologoist"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

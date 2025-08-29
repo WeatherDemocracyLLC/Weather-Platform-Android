@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/snacker_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/allowlocationicon"
+    android:paddingRight="@dimen/_10sdp"
+    tools:context=".activities.LocationActivity">
+
+    <TextView
+        android:id="@+id/textskip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:text="@string/skip"
+        android:visibility="gone"
+        android:textSize="@dimen/_13ssp" />
+
+    <ImageView
+        android:id="@+id/imglocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/locationicondavid" />
+
+    <TextView
+        android:id="@+id/textallowlocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imglocation"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/allow_your_location"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp" />
+
+    <TextView
+        android:id="@+id/textlorem1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textallowlocation"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_25sdp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_horizontal"
+        android:text="@string/allow_app_to_access_this_device"
+        android:textAlignment="center"
+        android:textSize="@dimen/_11ssp" />
+
+    <TextView
+        android:id="@+id/textlorem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textlorem1"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginRight="@dimen/_25sdp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_horizontal"
+        android:text="@string/location_all_the_time"
+        android:textAlignment="center"
+        android:textSize="@dimen/_11ssp" />
+
+    <Button
+        android:id="@+id/btnallowlocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:background="@drawable/buttonshape"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/allow_location"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15ssp" />
+</RelativeLayout>

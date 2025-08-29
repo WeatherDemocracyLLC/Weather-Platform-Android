@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "462468050535",
+    "firebase_url": "https://weather-democracy-1f052-default-rtdb.firebaseio.com",
+    "project_id": "weather-democracy-1f052",
+    "storage_bucket": "weather-democracy-1f052.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462468050535:android:c9a38edad6c891fd422ec2",
+        "android_client_info": {
+          "package_name": "com.webmobrilweatherapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxuxW6hVchDQJ0ZS7nw2UPXlM3sPSUXW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462468050535:android:8e9798758761a8c9422ec2",
+        "android_client_info": {
+          "package_name": "com.weatheruserapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxuxW6hVchDQJ0ZS7nw2UPXlM3sPSUXW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462468050535:android:16000a2337fd3a4f422ec2",
+        "android_client_info": {
+          "package_name": "com.webmobrilweatherapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxuxW6hVchDQJ0ZS7nw2UPXlM3sPSUXW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

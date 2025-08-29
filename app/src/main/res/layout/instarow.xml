@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5sdp">
+
+    <ImageView
+        android:id="@+id/instalogopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_10ssp"
+        android:src="@drawable/instalogopic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textnamedavid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_15ssp"
+        android:text="david_shaw"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintLeft_toRightOf="@id/instalogopic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/instapic1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/instapic1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/instalogopic" />
+
+    <ImageView
+        android:id="@+id/imglikeicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/instapic1"
+        app:srcCompat="@drawable/likeicon" />
+
+    <ImageView
+        android:id="@+id/imgcommenticon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15ssp"
+        app:layout_constraintLeft_toRightOf="@+id/imglikeicon"
+        app:layout_constraintTop_toBottomOf="@id/instapic1"
+        app:srcCompat="@drawable/commenticon" />
+
+    <TextView
+        android:id="@+id/textlorem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_5ssp"
+        android:layout_marginRight="@dimen/_20ssp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing it, sed do eiusmod tempor incididunt... more "
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintTop_toBottomOf="@id/imglikeicon" />
+</androidx.constraintlayout.widget.ConstraintLayout>

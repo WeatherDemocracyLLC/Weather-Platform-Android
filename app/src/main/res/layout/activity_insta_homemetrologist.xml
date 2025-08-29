@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.InstaHomeActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constantinstabottom"
+            android:layout_width="match_parent"
+            android:background="@color/red"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/imginstahome2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/toolbaar"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp" />
+
+
+
+            <TextView
+                android:id="@+id/wantToFollowingYou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="@dimen/_11sdp"
+                android:visibility="gone"
+                android:fontFamily="@font/poppins_semibold"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/white"
+                />
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/confirmDeleteConst"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35sdp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wantToFollowingYou">
+
+                <Button
+                    android:id="@+id/confirm_btn"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="Confirm"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:background="@drawable/confirmdelete_btnshape"
+                    app:layout_constraintTop_toBottomOf="@+id/wantToFollowingYou" />
+
+
+                <Button
+                    android:id="@+id/delete_btn"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="@drawable/confirmdelete_btnshape"
+                    android:backgroundTint="@color/red"
+                    android:text="Delete"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/wantToFollowingYou" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="@dimen/_5ssp"
+                android:layout_marginTop="@dimen/_7ssp"
+                app:layout_constraintTop_toBottomOf="@+id/confirmDeleteConst"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/edit_profileicon" />
+
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:layout_constraintTop_toTopOf="@+id/confirmDeleteConst"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/imgbadgeszero"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_30sdp"/>
+
+            <TextView
+                android:id="@+id/textDavidShaw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10ssp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/poppins_semibold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintLeft_toRightOf="@+id/imgProfile"
+                app:layout_constraintTop_toBottomOf="@+id/confirmDeleteConst"
+                >
+                <TextView
+                    android:id="@+id/textinsta1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_30sdp"
+                    android:text=""
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textpostinsta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:text="@string/txt_posts"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textinsta1" />
+
+                <TextView
+                    android:id="@+id/textinsta2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textFollowersinsta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_followers"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textinsta2" />
+
+                <TextView
+                    android:id="@+id/textinsta3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textFollowinginsta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_20ssp"
+                    android:text="@string/text_following"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textinsta2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/textDavidShaw">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/conshomeinsta"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_15ssp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:layout_marginRight="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_10ssp"
+                    android:background="@drawable/editprofileshape"
+                    android:backgroundTint="@color/white"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="@+id/ViewFollow"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/btnfollow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:drawableLeft="@drawable/followicon"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="@string/follow"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:id="@+id/ViewFollow"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="@dimen/_30ssp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:layout_marginRight="@dimen/_15ssp"
+                    android:id="@+id/layoutChat"
+                    android:visibility="gone"
+                    android:background="@drawable/editprofileshape"
+                    app:layout_constraintLeft_toRightOf="@+id/ViewFollow"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/btnChat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:drawableLeft="@drawable/chaticonuser"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="@string/chat"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@drawable/editprofileshape"
+                android:backgroundTint="@color/white"
+                android:id="@+id/layoutfollowes"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textDavidShaw">
+                <TextView
+                    android:id="@+id/btnfollowres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="@color/white"
+                    android:drawableLeft="@drawable/followicon"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutuserposts"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/constantinstabottom">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_profile"
+                android:layout_width="0dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/poppins_semibold"
+                app:tabIndicatorColor="@color/contacttoolbar"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/titelbar_color"
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" />
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_180sdp"
+                app:layout_constraintTop_toBottomOf="@+id/tab_profile"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:id="@+id/txtfolllowthem"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Follow the User to View Profile"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/private_cons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <ImageView
+                android:id="@+id/ic_private"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:src="@drawable/ic_private"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+            <TextView
+                android:id="@+id/accountisprivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/ic_private"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="This account is Private"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_semibold"
+                />
+            <TextView
+                android:id="@+id/followAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/accountisprivate"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="Follow this account to see their profile"
+                android:textSize="@dimen/_11sdp"
+                android:fontFamily="@font/poppins_semibold"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

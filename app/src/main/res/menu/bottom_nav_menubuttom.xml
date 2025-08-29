@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homemetrologist"
+        android:icon="@drawable/metrologisthome_selector"
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/newmetrologist"
+        android:icon="@drawable/homenewsicon"
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/notificationsselectedmetrologist"
+        android:icon="@drawable/plus_selector"
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/searchmetrologist"
+        android:icon="@drawable/search_selectorred"
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/profilemetrologist"
+        android:icon="@drawable/profile_semetrolector"
+        android:title=""
+        />
+
+</menu>

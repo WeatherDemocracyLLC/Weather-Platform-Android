@@ -1,0 +1,116 @@
+<resources xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="BaseNoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <style name="AppTheme" parent="BaseNoActionBarTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/titelbar_color</item>
+        <item name="colorPrimaryDark">@color/titelbar_color</item>
+        <item name="colorAccent">@color/titelbar_color</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="iconColor">@color/buttonBlueTitleBarColor</item>
+        <item name="iconRefrenceColor">@color/buttonRefrenceBlueTitleBarColor</item>
+        <item name="titleColor">@color/white</item>
+    </style>
+    <style name="OverlayThemeBlue" parent="AppTheme">
+        <item name="colorPrimary">@color/titelbar_color</item>
+        <item name="colorPrimaryDark">@color/titelbar_color</item>
+        <item name="colorAccent">@color/titelbar_color</item>
+        <item name="iconColor">@color/buttonBlueTitleBarColor</item>
+        <item name="iconRefrenceColor">@color/buttonRefrenceBlueTitleBarColor</item>
+        <item name="titleColor">@color/white</item>
+        <item name="otpViewStyle">@style/OtpWidget.OtpView</item>
+    </style>
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/bg_spinner</item>
+    </style>
+    <style name="OverlayThemeRed" parent="AppTheme">
+        <item name="colorPrimary">@color/redThemeColor</item>
+        <item name="colorPrimaryDark">@color/redThemeColor</item>
+        <item name="colorAccent">@color/redThemeColor</item>
+        <item name="iconColor">@color/buttonRedTitleBarColor</item>
+        <item name="iconRefrenceColor">@color/buttonRefrenceRedTitleBarColor</item>
+        <item name="titleColor">@color/black</item>
+        <item name="otpViewStyle">@style/OtpWidget.OtpView</item>
+    </style>
+
+    <!--<style name="OverlayThemeGray" parent="AppTheme">
+        <item name="colorPrimary">@color/grayThemeColor</item>
+        <item name="colorPrimaryDark">@color/grayThemeColor</item>
+        <item name="colorAccent">@color/grayThemeColor</item>
+        <item name="iconColor">@color/grayThemeColor</item>
+        <item name="titleColor">@color/white</item>
+
+    </style>
+
+    <style name="OverlayThemeDarkBlue" parent="AppTheme">
+        <item name="colorPrimary">@color/darkBlueThemeColor</item>
+        <item name="colorPrimaryDark">@color/darkBlueThemeColor</item>
+        <item name="colorAccent">@color/darkBlueThemeColor</item>
+        <item name="iconColor">@color/darkBlueThemeColor</item>
+        <item name="titleColor">@color/white</item>
+    </style>
+
+    <style name="OverlayThemeBlue" parent="AppTheme">
+        <item name="colorPrimary">@color/blueThemeColor</item>
+        <item name="colorPrimaryDark">@color/blueThemeColor</item>
+        <item name="colorAccent">@color/blueThemeColor</item>
+        <item name="iconColor">@color/blueThemeColor</item>
+        <item name="titleColor">@color/white</item>
+    </style>
+-->
+
+    <style name="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/appcolor</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+    </style>
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/appcolor</item>
+    </style>
+
+   <!-- <style name="AppTheme.home" parent="Theme.AppCompat.Light.DarkActionBar">
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
+        <item name="colorPrimary">@color/metroappback</item>
+        <item name="colorPrimaryDark">@color/metroappback</item>
+        <item name="colorAccent">@color/metroappback</item>
+    </style>-->
+
+
+    <style name="ProgressD" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.2</item>
+    </style>
+    <style name="Progressd">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.2</item>
+    </style>
+        <string name="spinner">Q39</string>
+        <string-array name="Spinnername">
+            <item>High</item>
+            <item>Low</item>
+        </string-array>
+    <style name="CustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textStyle">normal</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/_10sdp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+</resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activities.fragment.mterologistprofile.ProfileAboutFragmentsMetrologist">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintProfileHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10ssp"
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/imgdavidlogoedit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/personicon" />
+
+            <TextView
+                android:id="@+id/textdavidshaww"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10ssp"
+                android:fontFamily="@font/roboto_regular"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintLeft_toRightOf="@id/imgdavidlogoedit"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgdavidshawmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgdavidlogoedit"
+                app:srcCompat="@drawable/davidshawmail" />
+
+            <TextView
+                android:id="@+id/textdavidshawemail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10ssp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:fontFamily="@font/roboto_regular"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintLeft_toRightOf="@id/imgdavidshawmail"
+                app:layout_constraintTop_toBottomOf="@id/textdavidshaww" />
+
+            <ImageView
+                android:id="@+id/imgdavidshawlocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgdavidshawmail"
+                app:srcCompat="@drawable/locationicon" />
+
+            <TextView
+                android:id="@+id/textdavidshawMadison"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10ssp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:fontFamily="@font/roboto_regular"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintLeft_toRightOf="@id/imgdavidshawmail"
+                app:layout_constraintTop_toBottomOf="@id/textdavidshawemail" />
+
+            <ImageView
+                android:id="@+id/imgdavidshawtaskdavid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgdavidshawlocation"
+                app:srcCompat="@drawable/taskdaivdshaw" />
+
+            <TextView
+                android:id="@+id/textlastactive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10ssp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:fontFamily="@font/roboto_regular"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toRightOf="@id/imgdavidshawmail"
+                app:layout_constraintTop_toBottomOf="@id/textdavidshawMadison" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

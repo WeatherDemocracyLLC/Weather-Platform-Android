@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textdavideviewvotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_5ssp"
+        android:text="David"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10ssp"
+        android:fontFamily="@font/poppins_semibold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/texttempviewvotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20ssp"
+        android:layout_marginTop="5dp"
+        android:text="High Temp"
+        android:drawableLeft="@drawable/dot_icon"
+        android:textSize="@dimen/_10ssp"
+        android:drawablePadding="@dimen/_5sdp"
+        android:fontFamily="@font/poppins_semibold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textdavideviewvotes" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/texttempviewvotes"
+        app:layout_constraintTop_toBottomOf="@+id/textdavideviewvotes"
+        android:text="- 48"
+        android:id="@+id/txtTem"
+        android:textSize="@dimen/_10ssp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_marginTop="@dimen/_5sdp"/>
+
+
+    <TextView
+        android:id="@+id/textrain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5ssp"
+        android:layout_marginTop="@dimen/_5ssp"
+        android:text="Rain"
+        android:textSize="@dimen/_10ssp"
+        android:drawablePadding="@dimen/_5sdp"
+        android:drawableLeft="@drawable/dot_icon"
+        android:fontFamily="@font/poppins_semibold"
+        app:layout_constraintLeft_toRightOf="@id/txtTem"
+        app:layout_constraintTop_toBottomOf="@id/textdavideviewvotes" />
+
+    <ImageView
+        android:id="@+id/imgviewvotingicon"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginRight="@dimen/_20ssp"
+        android:src="@drawable/claudyicon2"
+        android:scaleType="fitXY"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.98dp"
+        android:background="#E8E8E8"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@+id/texttempviewvotes" />
+</androidx.constraintlayout.widget.ConstraintLayout>

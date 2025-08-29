@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/metrologisthomebackground"
+        tools:context=".activities.fragment.HomeFragmentsmetrologist">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_20sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rl_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#24FFFFFF"
+                    android:paddingBottom="@dimen/_15sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <ProgressBar
+                        android:id="@+id/ivLoader"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:indeterminateTint="@color/red"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/poweredby"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Powered by "
+                        android:textColor="@color/gray2"
+                        android:visibility="gone"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+                    <ImageView
+                        android:id="@+id/iccuIocn"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/accu_icon2"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        app:layout_constraintLeft_toRightOf="@+id/poweredby"
+                        />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/seeAll"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:text="7-day weather"
+                        android:textSize="@dimen/_10sdp"
+                        android:textAllCaps="false"
+                        android:gravity="center"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/homepagebtnshapeinnermetrologist"
+                        android:fontFamily="@font/poppins_semibold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_40ssp"
+                        android:layout_marginRight="@dimen/_60ssp"
+                        android:text="32\u2103"
+                        android:fontFamily="@font/segoe_ui"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_50ssp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.379"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.41" />
+
+
+
+
+                    <ImageView
+                        android:id="@+id/imghomesunriselogo"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginLeft="@dimen/_50sdp"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        app:layout_constraintLeft_toRightOf="@+id/text"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imgrain"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_60sdp"
+                        app:layout_constraintLeft_toRightOf="@+id/text"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+                    <TextView
+                        android:id="@+id/textsunntday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_30ssp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:drawableLeft="@drawable/ic_ellipse_2"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:text=" "
+                        android:textColor="@color/white"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/ViewWeather" />
+
+                    <View
+                        android:id="@+id/ViewWeather"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imgrain" />
+
+                    <TextView
+                        android:id="@+id/textfeellike"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_35sdp"
+                        android:drawableLeft="@drawable/ic_ellipse_2"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:text="Feel Like"
+                        android:textColor="@color/white"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/ViewWeather"
+                        app:layout_constraintTop_toBottomOf="@+id/imgrain" />
+
+                    <TextView
+                        android:id="@+id/textfeellikes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_marginTop="@dimen/_35sdp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:text=""
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/textfeellike"
+                        app:layout_constraintTop_toBottomOf="@+id/imgrain" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                 <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/sevenday_layout"
+                        app:layout_constraintTop_toBottomOf="@+id/rl_main"
+                        >
+
+                     <View
+                         android:id="@+id/whitespace"
+                         android:layout_width="match_parent"
+                         android:layout_height="3dp"
+                         android:background="@color/white"
+                         android:visibility="gone"
+                         app:layout_constraintTop_toTopOf="parent"
+                         />
+
+
+                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/sevenday_forecast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                         app:layout_constraintTop_toBottomOf="@+id/whitespace"
+                        />
+
+
+                     <View
+                         android:id="@+id/whitespace2"
+                         android:layout_width="match_parent"
+                         android:layout_height="3dp"
+                         android:background="@color/white"
+                         android:visibility="gone"
+                         app:layout_constraintTop_toBottomOf="@+id/sevenday_forecast"
+                         />
+
+
+
+
+                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constrainthomemetrologist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@+id/sevenday_layout">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/windhomeicon"
+                            android:drawablePadding="@dimen/_10sdp"
+                             android:text="13km/h"
+                            android:fontFamily="@font/segoe_ui"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/text2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/homeicon2"
+                            android:drawablePadding="@dimen/_10sdp"
+                             android:text="UV-3"
+                            android:fontFamily="@font/segoe_ui"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/text3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/homeicon3"
+                            android:drawablePadding="@dimen/_10sdp"
+                             android:text="2%"
+                            android:fontFamily="@font/segoe_ui"
+                            android:textColor="@color/white"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consntfragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/constrainthomemetrologist">
+
+                    <TextView
+                        android:id="@+id/textvoteweather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10ssp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintLeft_toRightOf="@+id/metrologistforecast_cardview"
+                        android:text="bvcbvcbvvcvcbvcnbbnvbvbnbbbnbnmnnnnndffddffdnmnm"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+               <!--     <androidx.cardview.widget.CardView
+                        android:id="@+id/metrologistforecast_cardview"
+                        android:layout_width="@dimen/_85sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        app:cardCornerRadius="@dimen/_20sdp"
+                        app:cardBackgroundColor="@color/red"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        >
+                        <TextView
+                            android:id="@+id/textforecastchallenege"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_marginLeft="@dimen/_15ssp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/black"
+                            android:backgroundTint="@color/red"
+                            android:textSize="@dimen/_11sdp"
+                            android:lines="2"
+                            android:background="@color/white"
+                            android:text="Forecast Challenge"
+                            />
+
+                    </androidx.cardview.widget.CardView>-->
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/metrologistforecast_cardview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/homepagebtnshapeinnermetrologist"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingRight="@dimen/_15sdp"
+                        android:text="Forecast \n Challenge"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_25ssp"
+                        app:layout_constraintTop_toBottomOf="@+id/textvoteweather">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnViewVote"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:background="@drawable/homepagebtnshapeinnermetrologist"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingLeft="@dimen/_15sdp"
+                            android:paddingRight="@dimen/_15sdp"
+                            android:text="View Votes"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnTomorrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/homepagebtnshapeinnermetrologist"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingLeft="@dimen/_15sdp"
+                            android:paddingRight="@dimen/_15sdp"
+                            android:text="Tomorrow"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btndayAfterTomorrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:background="@drawable/homepagebtnshapeinnermetrologist"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingLeft="@dimen/_15sdp"
+                            android:paddingRight="@dimen/_15sdp"
+                            android:text="Day after \n tomorrow"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10ssp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+
+                    <TextView
+                        android:id="@+id/txtNodata"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="No Data"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/txtNodatas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Data"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    android:fontFamily="@font/segoe_ui"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

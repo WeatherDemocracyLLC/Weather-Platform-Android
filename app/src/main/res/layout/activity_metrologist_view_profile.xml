@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.metrologistactivity.MetrologistViewProfileActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_metrobackcolor">
+
+        <include
+            android:id="@+id/LayoutrMetrologistProfile"
+            layout="@layout/metrologisttoollbar" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:layout_marginRight="@dimen/_10ssp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginBottom="@dimen/_20sdp"
+            app:layout_constraintTop_toBottomOf="@+id/LayoutrMetrologistProfile">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/Framelayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="120dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/edit_profileicon" />
+                    <ImageView
+                        android:id="@+id/imgCamera"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:src="@drawable/cameraimg" />
+
+                </FrameLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10ssp"
+                    app:layout_constraintTop_toBottomOf="@id/Framelayout">
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/viewclr"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/texteditprofile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:drawableRight="@drawable/ic_metropen"
+                        android:fontFamily="@font/segoe_ui"
+                        android:padding="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:text="@string/edit_profile"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imgusericon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/metrologistuserimg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/texteditprofile" />
+
+                    <TextView
+                        android:id="@+id/textDavidview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:text=""
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toRightOf="@id/imgusericon"
+                        app:layout_constraintTop_toBottomOf="@id/texteditprofile" />
+
+                    <ImageView
+                        android:id="@+id/imgemailview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/emailimgmetrologist"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imgusericon" />
+
+                    <TextView
+                        android:id="@+id/textemailview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:text=""
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toRightOf="@id/imgusericon"
+                        app:layout_constraintTop_toBottomOf="@id/textDavidview" />
+
+                    <ImageView
+                        android:id="@+id/imgphoneview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_13sdp"
+                        android:background="@drawable/ic_metrophoneicon"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imgemailview" />
+
+
+                    <TextView
+                        android:id="@+id/textphonenumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:text=""
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toRightOf="@id/imgusericon"
+                        app:layout_constraintTop_toBottomOf="@id/textemailview" />
+
+
+                    <ImageView
+                        android:id="@+id/imgaddressicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/metrologistselctcityimg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imgphoneview" />
+
+
+                    <TextView
+                        android:id="@+id/textaddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:text=""
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toRightOf="@id/imgusericon"
+                        app:layout_constraintTop_toBottomOf="@id/imgphoneview" />
+
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@color/viewclr"
+                        app:layout_constraintTop_toBottomOf="@+id/textaddress" />
+
+                    <TextView
+                        android:id="@+id/textchangepassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:drawableRight="@drawable/ic_metropen"
+                        android:fontFamily="@font/segoe_ui"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/change_password"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+                    <ImageView
+                        android:id="@+id/imglock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/padlockimg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textchangepassword" />
+
+
+                    <TextView
+                        android:id="@+id/textpassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:text="@string/text"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintLeft_toRightOf="@id/imglock"
+                        app:layout_constraintTop_toBottomOf="@id/textchangepassword" />
+
+
+                    <TextView
+                        android:id="@+id/textmakeprofileprivate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@+id/textpassword"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_45sdp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:padding="@dimen/_5sdp"
+                        android:text="@string/make_profile_private"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view2" />
+
+
+
+
+                    <Switch
+                        android:id="@+id/switch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@+id/textpassword"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginLeft="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_45sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:checked="false"
+                        app:trackTint="#FD6759"
+                        android:buttonTint="@color/red"
+                        android:textOff="OFF"
+                        android:textOn="ON"
+                        android:textSize="@dimen/_15sdp"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+
+
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/switch1"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:text="Delete Account"
+                        android:id="@+id/txtDeleteAccount"
+                        android:fontFamily="@font/segoe_ui"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:background="@drawable/metroshapebutton"
+                        android:padding="@dimen/_5sdp"
+                        android:textAllCaps="false"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:textSize="@dimen/_12sdp"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.webmobrilweatherapp" >
+
+    <!-- <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission
+        android:name="android.permission.INTERACT_ACROSS_USERS_FULL"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />
+
+    <uses-permission
+        android:name="android.permission.INTERACT_ACROSS_USERS"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+
+    <supports-screens android:anyDensity="true" />
+
+    <application
+        android:name="com.webmobrilweatherapp.baseApp.WeatherBaseApp"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:icon="@drawable/appicon"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/appicon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        >
+        <activity
+            android:name="com.webmobrilweatherapp.activities.WeatherMapActivity"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="com.webmobrilweatherapp.activities.UserAlertActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.MetrologistAlertActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.MetrologistPhotoViewActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.PhotosViewActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistPostActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.PostActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.VideoplayerActivity"
+            android:exported="false" />
+   <!--     <activity
+            android:name=".activities.ShareActivity"
+            android:exported="false" />-->
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.WerViewActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistFollowingActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistFollowersActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.SeeAllSevendays_Activity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.FollowingActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.FollowersActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistForecastFolowers"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistForecastChallengeActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistButterFlySpeicesActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ButterflySpeicesActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ForecastFollowers"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ForecastScreen"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistInstaHomeMetrologistActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.InstaHomemetrologistActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.UserVotingListsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistViewVotingListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.WeatherlocationSearchingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.CityLocationSignupActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistEditpostActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.EditPostActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.UserChatActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistChatActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.TopFiveMetrologistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.InstaFollowingActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.CreatepostMetrologistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MeterologistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistWeatherMayorActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistAboutUsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistContactActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.SendAlertActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MeterologistChangePasswordActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MeterologistEditProfileActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistViewProfileActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistChangeEmailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ChangeEmailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistSearchlocationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.ViewVotingListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistNotificationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MyAccountProfileMetrologistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:label="@string/title_activity_my_account_profile_metrologist"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistVerificationAccountActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrilogistHomeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+        android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistResetPasswordActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistOtpActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistForgotActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MetrologistLogInActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.metrologistactivity.MertologistSignUpActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ForgotOtpVerificationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.CreateNewPasswordActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.OtpScreenActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.WeatherVoteActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.CreatePostActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.TermsPrivacyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.WeatherMayorActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.VotingListActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.NotificationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.AboutUsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.MyAccountProfileActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.SearchMainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.PrivacyPolicyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.EditProfileActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ChangePasswordActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.WinnerActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ContactActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.WeatherLocationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ViewPagerActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.InstaHomeActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ViewProfileActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.TermsandConditionActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.HomeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" /> <!-- android:theme="@style/AppTheme.home" -->
+        <activity
+            android:name="com.webmobrilweatherapp.activities.ResetPasswordActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.VerificationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.SignUpActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.LoginActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.SelectOptionActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.LocationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.webmobrilweatherapp.activities.SplashActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="androidx.test.core.app.InstrumentationActivityInvoker$BootstrapActivity"
+            android:exported="true"
+           />
+
+        <activity android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity"
+            android:exported="true"
+          />
+
+        <activity android:name="androidx.test.core.app.InstrumentationActivityInvoker$EmptyFloatingActivity"
+            android:exported="true"
+            />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCz5akINY7UHe4zfZw_OsNd7Jj3lNcNGEU" /> <!-- AIzaSyCFQTLSqMaiV4k2KTNcilh6V3tjUwqFrSs -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/appicon" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/red" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <service
+            android:name="com.webmobrilweatherapp.activities.usernotification.MyFireBaseMessagingService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="@string/file_provider_name"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+    </application>
+
+</manifest>

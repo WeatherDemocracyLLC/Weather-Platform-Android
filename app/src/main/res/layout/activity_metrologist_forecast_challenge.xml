@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relativenitificationscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_metrobackcolor"
+        tools:context=".activities.metrologistactivity.MetrologistForecastChallengeActivity">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/red"
+            app:titleTextColor="@color/white">
+
+            <ImageView
+                android:id="@+id/imgbackicon"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/bk" />
+
+            <TextView
+                android:id="@+id/toolbarName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:layout_toRightOf="@+id/imgbackicon"
+                android:fontFamily="@font/segoe_ui"
+                android:text="Forecast Challenge"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:src="@drawable/notificationicon" />
+
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            app:cardCornerRadius="@dimen/_4sdp">
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/frame_ly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_centerHorizontal="true"
+                    >
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/challengebyme_relative"
+                        >
+
+                        <TextView
+                            android:id="@+id/challengebyme"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Challenge by me"
+                            android:textSize="@dimen/_13sdp" />
+
+                        <View
+                            android:id="@+id/line_1"
+                            android:layout_below="@+id/challengebyme"
+                            android:layout_width="@dimen/_117sdp"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:background="@color/black" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/challengebyfriends_relative"
+                        android:layout_toRightOf="@+id/challengebyme_relative"
+                        >
+                        <TextView
+                            android:id="@+id/challengebyfriends"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_20sdp"
+                            android:text="Challenge by friends"
+                            android:textSize="@dimen/_13sdp"
+                            />
+
+                        <View
+                            android:id="@+id/line_2"
+                            android:layout_below="@+id/challengebyfriends"
+                            android:layout_width="@dimen/_138sdp"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:background="@color/black" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:id="@+id/nav_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/frame_ly"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                </FrameLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</layout>

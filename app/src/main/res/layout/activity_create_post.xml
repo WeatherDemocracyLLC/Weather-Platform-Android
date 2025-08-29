@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.CreatePostActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+
+    <ImageView
+        android:id="@+id/vectorback"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_19sdp"
+        android:src="@drawable/backbtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textcreatpost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:fontFamily="@font/segoe_ui"
+        android:text="@string/create_post"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintLeft_toRightOf="@id/vectorback"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:background="@color/toolbaar"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_3sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="@string/post"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <View
+        android:id="@+id/viewcreatepost"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/viewclr"
+        app:layout_constraintTop_toBottomOf="@id/post" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgmaskpivcreatepost"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewcreatepost" />
+
+
+    <TextView
+        android:id="@+id/textdavidpost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_10ssp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintLeft_toRightOf="@id/imgmaskpivcreatepost"
+        app:layout_constraintTop_toBottomOf="@id/viewcreatepost" />
+
+    <TextView
+        android:id="@+id/davidcreatepostshaw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10ssp"
+        android:text=""
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintLeft_toRightOf="@id/imgmaskpivcreatepost"
+        app:layout_constraintTop_toBottomOf="@id/textdavidpost" />
+
+    <EditText
+
+        android:id="@+id/editwriteheresomthing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15ssp"
+        android:hint="@string/write_here_something_text"
+        android:textSize="@dimen/_10ssp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/davidcreatepostshaw"
+        tools:ignore="TouchTargetSizeCheck"/>
+
+
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/ImagesSlider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_330sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editwriteheresomthing"
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorEnabled="false"
+            android:visibility="gone"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="15dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="5dp"
+            app:sliderIndicatorRadius="2dp"
+            app:sliderStartAutoCycle="false"
+            android:scrollIndicators="none"
+            app:sliderIndicatorSelectedColor="#5A5A5A"
+            app:sliderIndicatorUnselectedColor="@color/white"
+            app:sliderScrollTimeInSec="1" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/editwriteheresomthing"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text=""
+            android:textAllCaps="false"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/black"
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/txtCounter"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/slidershape"
+            android:layout_marginRight="@dimen/_20sdp"/>
+
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_330sdp"
+            app:layout_constraintTop_toBottomOf="@+id/editwriteheresomthing"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/imageSet"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_330sdp"
+            android:visibility="visible"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toBottomOf="@+id/editwriteheresomthing"
+            android:scaleType="centerCrop"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

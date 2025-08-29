@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/id_cons1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/homepagebackgroundshape">
+
+        <ImageView
+            android:id="@+id/cross"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:src="@drawable/crosss"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            />
+
+        <TextView
+            android:id="@+id/texttemptomorrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Challenge by you"
+            android:textColor="@color/toolbaar"
+            android:textSize="@dimen/_12ssp" />
+
+
+        <ImageView
+            android:id="@+id/dott_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/texttemptomorrow"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:src="@drawable/dot_icon" />
+
+
+        <TextView
+            android:id="@+id/temperatureindegree"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/texttemptomorrow"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_toRightOf="@+id/dott_"
+            android:drawablePadding="@dimen/_5sdp"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+
+
+        <ImageView
+            android:id="@+id/dottt_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegree"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:src="@drawable/dot_icon" />
+
+        <TextView
+            android:id="@+id/tvspeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegree"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_toRightOf="@+id/dottt_"
+            android:drawablePadding="@dimen/_3sdp"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+
+        <TextView
+            android:id="@+id/precptionMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegree"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_toRightOf="@+id/tvspeed"
+            android:drawablePadding="@dimen/_3sdp"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+
+        <ImageView
+            android:id="@+id/dot_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegree"
+            android:layout_marginLeft="@dimen/_102sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/dottt_"
+            android:src="@drawable/dot_icon" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegree"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_toRightOf="@+id/dot_"
+            android:drawablePadding="@dimen/_3sdp"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+
+
+        <TextView
+            android:id="@+id/typeofspeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/texttemptomorrow"
+            android:layout_marginLeft="@dimen/_100sdp"
+            android:layout_toRightOf="@+id/dott_"
+            android:drawableLeft="@drawable/locationicon2"
+            android:drawablePadding="@dimen/_3sdp" />
+
+        <TextView
+            android:id="@+id/locationname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/texttemptomorrow"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/typeofspeed"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+
+        <TextView
+            android:id="@+id/challengeByComptname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationname"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Challenge by you "
+            android:textColor="@color/toolbaar"
+            android:textSize="@dimen/_12ssp" />
+
+
+        <ImageView
+            android:id="@+id/d_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/challengeByComptname"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/dot_icon" />
+
+
+        <TextView
+            android:id="@+id/temperatureindegre"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/challengeByComptname"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_toRightOf="@+id/d_"
+            android:drawablePadding="@dimen/_5sdp"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+
+
+        <ImageView
+            android:id="@+id/dotttt_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegre"
+            android:layout_marginLeft="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:src="@drawable/dot_icon" />
+
+        <TextView
+            android:id="@+id/tvspeedd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegre"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_toRightOf="@+id/dottt_"
+            android:drawablePadding="@dimen/_3sdp"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+        <TextView
+            android:id="@+id/comptPrecption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegre"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_toRightOf="@+id/tvspeedd"
+            android:drawablePadding="@dimen/_3sdp"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+
+        <ImageView
+            android:id="@+id/dottttt_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegre"
+            android:layout_marginLeft="@dimen/_102sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/dottt_"
+            android:src="@drawable/dot_icon" />
+
+        <TextView
+            android:id="@+id/dateee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/temperatureindegre"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_toRightOf="@+id/dot_"
+            android:drawablePadding="@dimen/_3sdp"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+
+
+        <TextView
+            android:id="@+id/typeofspeeddd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/challengeByComptname"
+            android:layout_marginLeft="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/dott_"
+            android:drawableLeft="@drawable/locationicon2"
+            android:drawablePadding="@dimen/_3sdp" />
+
+
+        <TextView
+            android:id="@+id/locationnamee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/challengeByComptname"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/typeofspeeddd"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:text=""
+            android:textSize="@dimen/_9sdp" />
+    </RelativeLayout>
+</RelativeLayout>

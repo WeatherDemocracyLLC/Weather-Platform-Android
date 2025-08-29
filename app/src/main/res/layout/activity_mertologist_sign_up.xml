@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.metrologistactivity.MertologistSignUpActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/signupbackground"
+        android:focusableInTouchMode="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/backimagemetro" />
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/imgBatterfly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_100sdp"
+                    android:src="@drawable/butterflywhite"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/loginbackshape"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/txtWelcomeToWeather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Welcome to the weather Forecast"
+                        android:textAllCaps="false"
+                        android:fontFamily="@font/segoe_ui"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtSignupContinueMetrologist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Sign Up to Continue"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtWelcomeToWeather" />
+
+                    <ImageView
+                        android:id="@+id/imgUserSignup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:src="@drawable/metrologistuserimg"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtSignupContinueMetrologist" />
+
+                    <EditText
+                        android:id="@+id/etSignupName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:hint="Name"
+                        android:inputType="text"
+                        android:fontFamily="@font/segoe_ui"
+                        android:paddingLeft="@dimen/_10ssp"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_12ssp"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@+id/imgUserSignup"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtSignupContinueMetrologist" />
+
+
+                    <ImageView
+                        android:id="@+id/ImgMetrologist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:src="@drawable/emailimgmetrologist"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etSignupName" />
+
+                    <EditText
+                        android:id="@+id/etEmailMetrologist"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:hint="Email ID"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="@dimen/_10ssp"
+                        android:textAllCaps="false"
+                        android:fontFamily="@font/segoe_ui"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@+id/ImgMetrologist"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etSignupName" />
+
+                    <ImageView
+                        android:id="@+id/LokcerMetrologist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:src="@drawable/padlockimg"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etEmailMetrologist" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etPasswordSignUpMetro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:boxCollapsedPaddingTop="0dp"
+                        app:errorEnabled="false"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintLeft_toRightOf="@+id/LokcerMetrologist"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etEmailMetrologist"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/red"
+                        app:startIconTint="@null">
+
+                        <EditText
+                            android:id="@+id/etPasswordSignUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:hint="Password"
+                            android:maxLength="15"
+                            android:singleLine="true"
+                            android:paddingLeft="@dimen/_10ssp"
+                            android:textAllCaps="false"
+                            android:textSize="@dimen/_12ssp"
+                            android:fontFamily="@font/segoe_ui"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toRightOf="@+id/LokcerMetrologist"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/etEmailMetrologist" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/imgSelectcity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:src="@drawable/metrologistselctcityimg"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etPasswordSignUpMetro" />
+
+                    <EditText
+                        android:id="@+id/etSelectcity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:hint="Select City"
+                        android:paddingLeft="@dimen/_5ssp"
+                        android:focusable="false"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        android:textColor="@color/grey"
+                        android:fontFamily="@font/segoe_ui"
+                        app:layout_constraintLeft_toRightOf="@+id/LokcerMetrologist"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etPasswordSignUpMetro" />
+
+                    <ImageView
+                        android:id="@+id/imgUploadImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_35sdp"
+                        android:src="@drawable/uploadimgsignupimg"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etSelectcity" />
+
+
+                    <EditText
+                        android:id="@+id/txtUploadeImg"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:hint="Upload a meteorologist degree,  Accreditation or certification"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:textStyle="bold"
+                        android:focusable="false"
+                        app:layout_constraintLeft_toRightOf="@+id/imgUploadImg"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etSelectcity" />
+
+                    <ImageView
+                        android:id="@+id/ImgUploadImgSignup"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textAllCaps="false"
+                        android:scaleType="fitXY"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="gone"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imgUploadImg" />
+
+                    <CheckBox
+                        android:id="@+id/CheckoxSignUpmetrologist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ImgUploadImgSignup" />
+
+                    <TextView
+                        android:id="@+id/txttermsConditionSignup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:text="Accept Terms and Condition |"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/segoe_ui"
+                        app:layout_constraintLeft_toRightOf="@+id/CheckoxSignUpmetrologist"
+                        app:layout_constraintTop_toBottomOf="@+id/ImgUploadImgSignup" />
+
+                    <TextView
+                        android:id="@+id/txtReadMoreSignUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:text=" Read more"
+                        android:textAllCaps="false"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/segoe_ui"
+                        app:layout_constraintLeft_toRightOf="@+id/txttermsConditionSignup"
+                        app:layout_constraintTop_toBottomOf="@+id/ImgUploadImgSignup" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/BtnsignUpmetrologist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:background="@drawable/metroshapebutton"
+                        android:text="Get Approval"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_15ssp"
+                        android:fontFamily="@font/segoe_ui"
+                        app:layout_constraintTop_toBottomOf="@+id/txttermsConditionSignup" />
+
+                    <TextView
+                        android:id="@+id/txtHaveanAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:layout_marginRight="@dimen/_30sdp"
+                        android:text="Don’t have an account?"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/segoe_ui"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/BtnsignUpmetrologist" />
+
+                    <TextView
+                        android:id="@+id/txtLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:text="Login"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/segoe_ui"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toRightOf="@+id/txtHaveanAccount"
+                        app:layout_constraintTop_toBottomOf="@+id/BtnsignUpmetrologist" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.VideoplayerActivity">
+
+
+    <com.google.android.exoplayer2.ui.StyledPlayerView
+        android:id="@+id/video_player"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_370sdp"
+        android:hardwareAccelerated="true"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:resize_mode="fill"
+        app:show_buffering="when_playing" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

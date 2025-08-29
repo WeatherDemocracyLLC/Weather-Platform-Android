@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:id="@+id/IMgMayors"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="@dimen/_10sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:src="@drawable/winnericon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@+id/IMgMayors"
+            android:text="25 April 2021 - 24 May 2021"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:id="@+id/datemayor"
+            android:layout_marginLeft="@dimen/_15sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semibold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@+id/IMgMayors"
+            android:text="noida"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:id="@+id/txtCity"
+            android:layout_marginLeft="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@+id/datemayor"
+            android:textSize="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_semibold"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
