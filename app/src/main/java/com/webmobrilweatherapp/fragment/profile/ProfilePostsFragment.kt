@@ -150,7 +150,7 @@ class ProfilePostsFragment : Fragment(), BottomInterface, LikeInterface, DeleteB
                             else
                             {
                                 binding.txtNoPhoto.visibility = GONE
-                                Toast.makeText(context,"no more post available", Toast.LENGTH_LONG).show()
+//                                Toast.makeText(context,"no more post available", Toast.LENGTH_LONG).show()
                             }
                         }
                     } else {

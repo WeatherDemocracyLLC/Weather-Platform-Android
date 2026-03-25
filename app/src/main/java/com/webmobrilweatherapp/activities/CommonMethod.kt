@@ -98,5 +98,23 @@ class CommonMethod constructor(context: Context) {
             }
             return sInstance as CommonMethod
         }
+
+        /**
+         * Resets shared location / weather UI state so a new login (or role switch:
+         * user ↔ meteorologist) always starts from current device location instead of
+         * the previous account's dropdown selection.
+         */
+        @JvmStatic
+        fun clearSharedWeatherLocationSession(context: Context) {
+            val cm = getInstance(context.applicationContext)
+            cm.savePreference(AppConstant.KEY_USER_MANUALLY_SELECTED_LOCATION, false)
+            cm.savePreference(AppConstant.location, "0.0")
+            cm.savePreference(AppConstant.Longituted, "0.0")
+            cm.savePreference(AppConstant.lc, "0")
+            cm.savePreference(AppConstant.lc1, "0")
+            cm.removeData(AppConstant.KEY)
+            cm.removeData(AppConstant.locationMetrologist)
+            cm.removeData(AppConstant.LongitutedMetrologist)
+        }
     }
 }

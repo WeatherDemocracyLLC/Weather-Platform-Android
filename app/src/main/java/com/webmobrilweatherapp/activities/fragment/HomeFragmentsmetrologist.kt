@@ -37,6 +37,7 @@ import com.webmobrilweatherapp.utilise.CommonUtil
 import com.webmobrilweatherapp.utilise.LocationUtilities
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.webmobrilweatherapp.activities.metrologistactivity.MetrologistLogInActivity
 import com.webmobrilweatherapp.databinding.FragmentHomeFragmentsmetrologistBinding
 import java.util.*
@@ -56,6 +57,7 @@ class HomeFragmentsmetrologist : Fragment() {
     var strkey: String=""
     var clickBtn=0
     var b=0
+    private var pendingLocationCall = false
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -73,6 +75,8 @@ class HomeFragmentsmetrologist : Fragment() {
         accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
         binding = FragmentHomeFragmentsmetrologistBinding.inflate(layoutInflater)
         (requireActivity() as MetrilogistHomeActivity).updateBottomBar(0)
+        lat = arguments?.getDouble("lat").toString()
+        long = arguments?.getDouble("long").toString()
 
 
         // Inflate the layout for this fragment
@@ -177,14 +181,52 @@ class HomeFragmentsmetrologist : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         LocationUtilities.requestLocationPermission(requireActivity())
         if (isLocationEnabled1()) {
-            getLastLocation()
+            (requireActivity() as MetrilogistHomeActivity).updateBottomBar(0)
+
+            LocationUtilities.requestLocationPermission(requireActivity())
+            triggerWeatherLoad()
+
+            getuserprofileMetrologist()
+
+            // Decide location → call API
+//            triggerWeatherLoad()
+//            getLastLocation()
         } else {
             Toast.makeText(requireContext(), "Please enable location services", Toast.LENGTH_LONG).show()
             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
         }
-        getuserprofileMetrologist()
+//        getuserprofileMetrologist()
         usertype = CommonMethod.getInstance(requireContext()).getPreference(AppConstant.USER_TYPE)
 
+    }
+    private fun triggerWeatherLoad() {
+        val prefs = CommonMethod.getInstance(requireContext())
+        val userSelected = prefs.getPreference(AppConstant.KEY_USER_MANUALLY_SELECTED_LOCATION, false)
+
+        var lat = prefs.getPreference(AppConstant.location, "0.0")
+        var lon = prefs.getPreference(AppConstant.Longituted, "0.0")
+
+        Log.d("Metrologist", "triggerWeatherLoad → selected? $userSelected | lat=$lat, lon=$lon")
+
+        if (userSelected) {
+            // User already picked a city → use it
+            Log.d("Metrologist", "Using manually selected location: $lat, $lon")
+        } else {
+            // No manual selection → use last known device location or fetch now
+            if (lat == "0.0" || lon == "0.0") {
+                Log.d("Metrologist", "No location saved → fetching current location")
+                getCurrentLocationAndProceed()
+                return
+            }
+            Log.d("Metrologist", "Using last known device location: $lat, $lon")
+        }
+
+        if (lat != "0.0" && lon != "0.0") {
+            callHomeApiWithLocation(lat, lon)
+        } else {
+            binding.ivLoader.visibility = View.GONE
+            Toast.makeText(requireContext(), "No location available", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun isLocationEnabled1(): Boolean {
@@ -194,39 +236,139 @@ class HomeFragmentsmetrologist : Fragment() {
     }
 
     private fun getHomeapge() {
-        binding.ivLoader.visibility=View.VISIBLE
+        binding.ivLoader.visibility = View.VISIBLE
 
-        if (context != null) {
-            // ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
-            lat=  CommonMethod.getInstance(requireContext()).getPreference(AppConstant.location)
-            long= CommonMethod.getInstance(requireActivity()).getPreference(AppConstant.Longituted)
-            accountViewModel?.getHomeapge(
-                "wkw7ho4Gya6HakuE7dNcEVEHIVJMZAhU", lat + "," + long,
-                "En",
-                "true"
-            )?.observe(requireActivity()) {
-                //ProgressD.hideProgressDialog()
-                if (it != null) {
-                    // binding!!.checkBox.isChecked = false
-                    if (it != null)
-                        CommonMethod.getInstance(context).savePreference(AppConstant.KEY, it.key.toString())
-                      strkey = it.key.toString()
-                    var strkey = it.key
-                    if (strkey != null) {
-                        getHomeapgesunny(strkey.toString())
-                    }
-                    /*strkey?.let { it1 -> getHomeapgesunny(it1) }*/
-                    // intent.putExtra("email", it.result!!.email,Toast.LENGTH_LONG)
-                } else {
-                    /*Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()
-                    Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()*/
-                }
+        val prefs = CommonMethod.getInstance(requireContext())
+
+        val userSelected = prefs.getPreference(AppConstant.KEY_USER_MANUALLY_SELECTED_LOCATION, false)
+
+        val lat: String
+        val lon: String
+
+        if (userSelected) {
+            // User picked a city → use saved searched location
+            lat = prefs.getPreference(AppConstant.location, "0.0")
+            lon = prefs.getPreference(AppConstant.Longituted, "0.0")
+            Log.d("Weather", "Using USER-SELECTED location: $lat, $lon")
+        } else {
+            // First time or no manual selection → try current device location
+            lat = prefs.getPreference(AppConstant.location, "0.0")     // fallback if never saved
+            lon = prefs.getPreference(AppConstant.Longituted, "0.0")
+
+            if (lat == "0.0" || lon == "0.0") {
+                // We don't have any location yet → get current one now
+                getCurrentLocationAndProceed()
+                return   // ← important: don't call API yet
             }
+
+            Log.d("Weather", "Using DEVICE location (no manual selection): $lat, $lon")
         }
 
-        // Get user sign up response
-
+        // Now call API with decided coordinates
+        callHomeApiWithLocation(lat, lon)
     }
+
+    private fun callHomeApiWithLocation(lat: String, lon: String) {
+        if (!isAdded || !isVisible || view == null) {
+            Log.w("MetrologistFrag", "Cannot call API - fragment not ready")
+            return
+        }
+
+        binding.ivLoader.visibility = View.VISIBLE
+
+        accountViewModel?.getHomeapge(
+            "AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4",
+            "$lat,$lon",
+            "En",
+            "true"
+        )?.observe(viewLifecycleOwner) { response ->
+            if (!isAdded || view == null) return@observe
+
+            binding.ivLoader.visibility = View.GONE
+
+            if (response != null && response.key != null) {
+                val key = response.key.toString()
+                CommonMethod.getInstance(requireContext()).savePreference(AppConstant.KEY, key)
+                strkey = key
+                getHomeapgesunny(key)
+                Log.d("Metrologist", "API success - key saved: $key")
+            } else {
+                Log.w("Metrologist", "API returned null or no key")
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getCurrentLocationAndProceed() {
+        if (!isLocationEnabled1()) {
+            Toast.makeText(requireContext(), "Please enable location services", Toast.LENGTH_LONG).show()
+            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+            return
+        }
+
+        val fused = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        fused.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)
+            .addOnSuccessListener { location ->
+                if (location == null || !isAdded || view == null) {
+                    binding.ivLoader.visibility = View.GONE
+                    return@addOnSuccessListener
+                }
+
+                val latStr = location.latitude.toString()
+                val lonStr = location.longitude.toString()
+
+                CommonMethod.getInstance(requireContext()).apply {
+                    savePreference(AppConstant.location, latStr)
+                    savePreference(AppConstant.Longituted, lonStr)
+                }
+
+                Log.d("Metrologist", "Current location saved: $latStr, $lonStr")
+
+                callHomeApiWithLocation(latStr, lonStr)
+            }
+            .addOnFailureListener {
+                if (!isAdded || view == null) return@addOnFailureListener
+                Log.e("MetrologistLocation", "Failed to get location", it)
+                binding.ivLoader.visibility = View.GONE
+                Toast.makeText(requireContext(), "Failed to get current location", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+//    private fun getHomeapge() {
+//        binding.ivLoader.visibility=View.VISIBLE
+//
+//        if (context != null) {
+//            // ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
+//            lat=  CommonMethod.getInstance(requireContext()).getPreference(AppConstant.location)
+//            long= CommonMethod.getInstance(requireActivity()).getPreference(AppConstant.Longituted)
+//            accountViewModel?.getHomeapge(
+//                "wkw7ho4Gya6HakuE7dNcEVEHIVJMZAhU", lat + "," + long,
+//                "En",
+//                "true"
+//            )?.observe(requireActivity()) {
+//                //ProgressD.hideProgressDialog()
+//                if (it != null) {
+//                    // binding!!.checkBox.isChecked = false
+//                    if (it != null)
+//                        CommonMethod.getInstance(context).savePreference(AppConstant.KEY, it.key.toString())
+//                      strkey = it.key.toString()
+//                    var strkey = it.key
+//                    if (strkey != null) {
+//                        getHomeapgesunny(strkey.toString())
+//                    }
+//                    /*strkey?.let { it1 -> getHomeapgesunny(it1) }*/
+//                    // intent.putExtra("email", it.result!!.email,Toast.LENGTH_LONG)
+//                } else {
+//                    /*Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()*/
+//                }
+//            }
+//        }
+//
+//        // Get user sign up response
+//
+//    }
     //***********************************************For Ten days********************************************//
     private fun getTendaysWeather(strkey: String) {
         // Get user sign up response
@@ -651,11 +793,13 @@ class HomeFragmentsmetrologist : Fragment() {
 
     override fun onResume() {
         if (isLocationEnabled1()) {
-            getLastLocation()
+            getuserprofileMetrologist()
+//            getLastLocation()
         } else {
             Toast.makeText(requireContext(), "Please enable location services", Toast.LENGTH_LONG).show()
             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
         }
+
 
         super.onResume()
     }

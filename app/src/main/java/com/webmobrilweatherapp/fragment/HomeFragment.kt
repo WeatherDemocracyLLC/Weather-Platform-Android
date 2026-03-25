@@ -227,51 +227,151 @@ class HomeFragment : Fragment() {
 
     }
 
-    @SuppressLint("SuspiciousIndentation")
     private fun getHomeapge() {
-    binding.ivLoader.visibility=View.VISIBLE
-        if (context != null) {
-            // ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
-            Log.d("TAG", "djfkdsfdsofi: "+lat+long)
-            lat=  CommonMethod.getInstance(requireContext()).getPreference(AppConstant.location)
-            long= CommonMethod.getInstance(requireActivity()).getPreference(AppConstant.Longituted)
-           //  Toast.makeText(requireContext(), lat.toString(), Toast.LENGTH_LONG).show()
+        binding.ivLoader.visibility = View.VISIBLE
 
+        val prefs = CommonMethod.getInstance(requireContext())
 
-            accountViewModel?.getHomeapge(
-                "AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM", lat + "," + long,
-                "En",
-                "true"
-            )?.observe(requireActivity()) {
-                //ProgressD.hideProgressDialog()
-                if (it != null) {
-                    // binding!!.checkBox.isChecked = false
-                    if (it != null)
-                        getInstance(context).savePreference(AppConstant.KEY, it.key.toString())
-                     strkey = it.key.toString()
-                    getHomeapgesunny(it.key.toString())
+        val userSelected = prefs.getPreference(AppConstant.KEY_USER_MANUALLY_SELECTED_LOCATION, false)
 
-                    Log.d("TAG", "gfhjkhgjkh: "+strkey)
-                    if (strkey != null) {
-                        //getTendaysWeather(strkey.toString())
-                       // Toast.makeText(requireContext(), strkey.toString(), Toast.LENGTH_LONG).show()
+        val lat: String
+        val lon: String
 
+        if (userSelected) {
+            // User picked a city → use saved searched location
+            lat = prefs.getPreference(AppConstant.location, "0.0")
+            lon = prefs.getPreference(AppConstant.Longituted, "0.0")
+            Log.d("Weather", "Using USER-SELECTED location: $lat, $lon")
+        } else {
+            // First time or no manual selection → try current device location
+            lat = prefs.getPreference(AppConstant.location, "0.0")     // fallback if never saved
+            lon = prefs.getPreference(AppConstant.Longituted, "0.0")
 
+            if (lat == "0.0" || lon == "0.0") {
+                // We don't have any location yet → get current one now
+                getCurrentLocationAndProceed()
+                return   // ← important: don't call API yet
+            }
 
-                    }
+            Log.d("Weather", "Using DEVICE location (no manual selection): $lat, $lon")
+        }
 
-                    /*strkey?.let { it1 -> getHomeapgesunny(it1) }*/
-                    // intent.putExtra("email", it.result!!.email,Toast.LENGTH_LONG)
-                } else{
+        // Now call API with decided coordinates
+        callHomeApiWithLocation(lat, lon)
+    }
 
-                    /*Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()*/
+    private fun callHomeApiWithLocation(lat: String, lon: String) {
+        if (!isAdded || !isVisible || view == null) {
+            Log.w("HomeFragment", "View not available, skipping API call")
+            return
+        }
+        if (lat == "0.0" || lon == "0.0") {
+            binding.ivLoader.visibility = View.GONE
+            Toast.makeText(requireContext(), "Location not available", Toast.LENGTH_LONG).show()
+            return
+        }
 
+        accountViewModel?.getHomeapge(
+            "AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4",
+            "$lat,$lon",
+            "En",
+            "true"
+        )?.observe(viewLifecycleOwner) { response ->
+            binding.ivLoader.visibility = View.GONE
 
-                }
+            if (response != null) {
+                val key = response.key.toString()
+                CommonMethod.getInstance(requireContext()).savePreference(AppConstant.KEY, key)
+                strkey = key
+
+                getHomeapgesunny(key)
+                // getTendaysWeather(key)  ← call when needed (seeAll clicked)
             }
         }
-        // Get user sign up response
     }
+
+    @SuppressLint("MissingPermission")
+    private fun getCurrentLocationAndProceed() {
+        if (!isLocationEnabled1()) {
+            Toast.makeText(requireContext(), "Please enable location", Toast.LENGTH_LONG).show()
+            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+            return
+        }
+
+        val fused = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        fused.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)
+            .addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    val lat = location.latitude.toString()
+                    val lon = location.longitude.toString()
+
+                    // Save it — this becomes default until user searches
+                    CommonMethod.getInstance(requireContext()).apply {
+                        savePreference(AppConstant.location, lat)
+                        savePreference(AppConstant.Longituted, lon)
+                        // Do NOT set KEY_USER_MANUALLY_SELECTED_LOCATION = true here!
+                    }
+
+                    callHomeApiWithLocation(lat, lon)
+                } else {
+                    Toast.makeText(requireContext(), "Couldn't get location", Toast.LENGTH_LONG).show()
+                    binding.ivLoader.visibility = View.GONE
+                }
+            }
+            .addOnFailureListener {
+                Log.e("Location", "getCurrentLocation failed", it)
+                Toast.makeText(requireContext(), "Location error", Toast.LENGTH_SHORT).show()
+                binding.ivLoader.visibility = View.GONE
+            }
+    }
+
+//    @SuppressLint("SuspiciousIndentation")
+//    private fun getHomeapge() {
+//    binding.ivLoader.visibility=View.VISIBLE
+//        if (context != null) {
+//            // ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
+//            Log.d("TAG", "djfkdsfdsofi: "+lat+long)
+////            lat=  CommonMethod.getInstance(requireContext()).getPreference(AppConstant.location)
+////            long= CommonMethod.getInstance(requireActivity()).getPreference(AppConstant.Longituted)
+//           //  Toast.makeText(requireContext(), lat.toString(), Toast.LENGTH_LONG).show()
+//
+//
+//            accountViewModel?.getHomeapge(
+////                "AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM", lat + "," + long,
+//                "AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4", lat + "," + long,
+//                "En",
+//                "true"
+//            )?.observe(requireActivity()) {
+//                //ProgressD.hideProgressDialog()
+//                if (it != null) {
+//                    // binding!!.checkBox.isChecked = false
+//                    if (it != null)
+//                        getInstance(context).savePreference(AppConstant.KEY, it.key.toString())
+//                     strkey = it.key.toString()
+//                    getHomeapgesunny(it.key.toString())
+//
+//                    Log.d("TAG", "gfhjkhgjkh: "+strkey)
+//                    if (strkey != null) {
+//                        //getTendaysWeather(strkey.toString())
+//                       // Toast.makeText(requireContext(), strkey.toString(), Toast.LENGTH_LONG).show()
+//
+//
+//
+//                    }
+//
+//                    /*strkey?.let { it1 -> getHomeapgesunny(it1) }*/
+//                    // intent.putExtra("email", it.result!!.email,Toast.LENGTH_LONG)
+//                } else{
+//
+//                    /*Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()*/
+//
+//
+//                }
+//            }
+//        }
+//        // Get user sign up response
+//    }
 //***********************************************For Ten days********************************************//
 private fun getTendaysWeather(strkey: String) {
     // Get user sign up response
@@ -643,13 +743,13 @@ private fun getTendaysWeather(strkey: String) {
             null
         ).addOnSuccessListener { location ->
             if (location != null) {
-                val lat = location.latitude.toString()
-                val long = location.longitude.toString()
-                Log.d("Location", "Lat: $lat, Long: $long")
+//                val lat = location.latitude.toString()
+//                val long = location.longitude.toString()
+//                Log.d("Location", "Lat: $lat, Long: $long")
 
                 // Save location if needed
-                getInstance(requireContext()).savePreference(AppConstant.location, lat)
-                getInstance(requireContext()).savePreference(AppConstant.Longituted, long)
+//                getInstance(requireContext()).savePreference(AppConstant.location, lat)
+//                getInstance(requireContext()).savePreference(AppConstant.Longituted, long)
 
                 // Continue with API call or next action
                 getHomeapge()
@@ -692,6 +792,10 @@ private fun getTendaysWeather(strkey: String) {
 
 
     private fun getuserprofile() {
+         lat = arguments?.getDouble("lat").toString()
+         long = arguments?.getDouble("long").toString()
+
+        Log.e("Lat Long after search", lat);
       //  ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
         userid = CommonMethod.getInstance(context).getPreference(AppConstant.KEY_User_id, 0)
         accountViewModel?.getuserprofile(

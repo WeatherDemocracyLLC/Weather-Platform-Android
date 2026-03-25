@@ -190,7 +190,7 @@ class UserPostFollowFragment : Fragment() , BottomInterface, LikeInterface {
                         else
                         {
                             binding.txtNoPhoto.visibility = View.GONE
-                            Toast.makeText(context,"no more post available", Toast.LENGTH_LONG).show()
+//                            Toast.makeText(context,"no more post available", Toast.LENGTH_LONG).show()
                         }
                     }
                 } else {

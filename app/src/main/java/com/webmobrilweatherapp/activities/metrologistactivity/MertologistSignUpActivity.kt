@@ -729,7 +729,9 @@ class MertologistSignUpActivity : AppCompatActivity(),PermissionCallback {
     private fun getalllocation(latitude: String, longitude: String) {
 
         accountViewModelMetrologist?.getalllocationmetrologist(
-            (latitude+","+longitude),"AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+//            (latitude+","+longitude),"AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+//            (latitude+","+longitude),"AIzaSyBXXPfxpa4HdGUrWFzVeyrlOos1JVwvkeE"
+            (latitude+","+longitude),"AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4"
         )?.observe(this) {
             //ProgressD.hideProgressDialog()
             if (it != null) {

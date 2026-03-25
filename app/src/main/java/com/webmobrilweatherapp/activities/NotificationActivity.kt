@@ -3,6 +3,7 @@ package com.webmobrilweatherapp.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,6 @@ import com.webmobrilweatherapp.adapters.NotificationAdapter
 import com.webmobrilweatherapp.databinding.ActivityNotificationBinding
 import com.webmobrilweatherapp.function.MySingleton
 import com.webmobrilweatherapp.model.notification.NotificationsItem
-import com.webmobrilweatherapp.model.uservotinglist.DataItem
 import com.webmobrilweatherapp.utilise.NotificationUtils
 import com.webmobrilweatherapp.viewmodel.webconfig.ApiConnection.network.AccountViewModel
 
@@ -38,6 +38,7 @@ class NotificationActivity : AppCompatActivity(), NotificationAdapter.SelectItem
         binding = ActivityNotificationBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        Log.e("Coming in notification", "yes")
 
         NotificationUtils.clearNotificationCount(applicationContext)
         val intent = Intent("com.webmobrilweatherapp.NOTIFICATION_COUNT_UPDATED")
@@ -87,38 +88,43 @@ class NotificationActivity : AppCompatActivity(), NotificationAdapter.SelectItem
         )
             ?.observe(this) {
                 ProgressD.hideProgressDialog()
-                Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()
-                if (it != null && it.success == true) {
-                    binding.recyclerView.visibility= View.VISIBLE
-                    if (it.notifications as List<DataItem> != null && it.notifications.size > 0) {
-                        binding.noNotifications.visibility= View.GONE
-                        //  binding.Txtnovoting.visibility = View.GONE
-                        notificationAdapter =
-                            NotificationAdapter(this, it.notifications as List<NotificationsItem>,this)
-                        val layoutManager =
-                            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                        binding.recyclerView.layoutManager = layoutManager
-                        binding.recyclerView.adapter = notificationAdapter
-                    } else {
-                        binding.recyclerView.visibility= View.GONE
+                val message = it?.message.orEmpty()
 
-                        //  binding.Txtnovoting.visibility = View.VISIBLE
-                    }
+                // Auth handling first
+                if (message == "Unauthenticated.") {
+                    CommonMethod.getInstance(this).savePreference(AppConstant.KEY_loginStatus, false)
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    startActivity(intent)
+                    return@observe
+                }
 
-                    // Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+                val notifications: List<NotificationsItem> =
+                    it?.notifications?.filterNotNull().orEmpty()
+
+                val hasData = (it?.success == true) && notifications.isNotEmpty()
+
+                if (hasData) {
+                    binding.noNotifications.visibility = View.GONE
+                    binding.recyclerView.visibility = View.VISIBLE
+
+                    notificationAdapter = NotificationAdapter(this, notifications, this)
+                    val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                    binding.recyclerView.layoutManager = layoutManager
+                    binding.recyclerView.adapter = notificationAdapter
                 } else {
-                    binding.recyclerView.visibility= View.GONE
-                    binding.noNotifications.visibility= View.VISIBLE
-                    if(it!!.message.toString()=="Unauthenticated.")
-                    {
+                    // Covers:
+                    // - success=false ("data not found!")
+                    // - success=true but empty list
+                    // - null body
+                    Log.e("NotificationActivity", "No notifications: success=${it?.success}, message=$message")
+                    binding.recyclerView.visibility = View.GONE
+                    binding.noNotifications.visibility = View.VISIBLE
 
-                        CommonMethod.getInstance(this)
-                            .savePreference(AppConstant.KEY_loginStatus, false)
-                        val intent = Intent(this, LoginActivity::class.java)
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        this?.startActivity(intent)
-                    }                }
+                    if (message.isNotBlank()) {
+                        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                    }
+                }
             }
     }
 

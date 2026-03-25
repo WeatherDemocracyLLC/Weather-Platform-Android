@@ -29,6 +29,7 @@ class ProfileSearchkFragment : Fragment(), UserSearchprofileAdapter.AdapterInter
     private lateinit var userSearchprofileAdapter: UserSearchprofileAdapter
     var userType = 1
     var listSize = 0
+    private var searchWatcherAdded = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +38,25 @@ class ProfileSearchkFragment : Fragment(), UserSearchprofileAdapter.AdapterInter
     ): View {
         accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
         binding = FragmentProfileSearchkBinding.inflate(layoutInflater)
+        ensureSearchWatcher()
         getsearchprofilesmetrologist()
         return binding.root
 
+    }
+
+    private fun ensureSearchWatcher() {
+        if (searchWatcherAdded) return
+        searchWatcherAdded = true
+
+        binding.searcbar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                if (!::userSearchprofileAdapter.isInitialized) return
+                val text: String = binding.searcbar.text.toString().lowercase()
+                userSearchprofileAdapter.getFilter(binding.txtNoUser).filter(text)
+            }
+        })
     }
 
     private fun getsearchprofilesmetrologist() {
@@ -64,11 +81,14 @@ class ProfileSearchkFragment : Fragment(), UserSearchprofileAdapter.AdapterInter
 
                         if (it != null && it.success == true) {
                             if (it.data as ArrayList<Datum> != null && it.data.size > 0) {
+                                val uniqueData = it.data
+                                    .distinctBy { datum -> datum.id }
+                                    .toCollection(ArrayList())
                                 binding.txtNoUser.visibility = GONE
                                 binding.constraintsearch.visibility= VISIBLE
                                 userSearchprofileAdapter = UserSearchprofileAdapter(
                                     requireContext(),
-                                    it.data as ArrayList<Datum>,
+                                    uniqueData,
                                     this,binding.txtNoUser
                                 )
                                 val layoutManager = LinearLayoutManager(
@@ -102,17 +122,6 @@ class ProfileSearchkFragment : Fragment(), UserSearchprofileAdapter.AdapterInter
                 }
 
             }
-
-        binding.searcbar.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun afterTextChanged(editable: Editable) {
-                val text: String = binding.searcbar.text.toString().toLowerCase()
-               userSearchprofileAdapter.getFilter(binding.txtNoUser).filter(text)
-                if (listSize > 0)
-                    userSearchprofileAdapter.getFilter(binding.txtNoUser).filter(text)
-            }
-        })
     }
 
     override fun onItemClick(id: String, name: String) {

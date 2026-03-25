@@ -2,11 +2,14 @@ package com.webmobrilweatherapp.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.location.Location
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
@@ -26,6 +29,7 @@ class SplashActivity : AppCompatActivity() {
     var productId="0"
     var applicationId="0"
     private var sessionManager: SessionManager? = null
+    private lateinit var mFusedLocationClient: FusedLocationProviderClient
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +37,17 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         val view = binding.root
         sessionManager = SessionManager(this)
+        CommonMethod.getInstance(this).savePreference(
+            AppConstant.KEY_USER_MANUALLY_SELECTED_LOCATION,
+            false
+        )
+
+        // App-launch behavior: always start from CURRENT device location.
+        // Clear previous displayed label so toolbar/dropdown doesn't show stale city.
+        CommonMethod.getInstance(this).savePreference(AppConstant.lc, "0")
+        CommonMethod.getInstance(this).savePreference(AppConstant.lc1, "0")
+
+        fetchCurrentLocationForLaunch()
         setContentView(view)
 
         applicationId = CommonMethod.getInstance(this).getPreference(AppConstant.Key_ApplicationId,"0")
@@ -205,55 +220,83 @@ class SplashActivity : AppCompatActivity() {
                     })
     }
 
-    private fun jump() {
-        val isVerified: String = sessionManager!!.isVerified()
-        Log.d("TAG", "dsafgh: ${isVerified}")
-        Handler().postDelayed({
-            if (CommonMethod.getInstance(this).getPreference(AppConstant.KEY_loginStatus, false)) {
-                if (CommonMethod.getInstance(this).getPreference(AppConstant.KEY_loginStatus, false)
-                ) {
-                    val i = Intent(applicationContext, HomeActivity::class.java)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(i)
-                    finish()
-                } else {
-                    val i = Intent(this, LoginActivity::class.java)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(i)
-                    finish()
-                }
-            } else if (CommonMethod.getInstance(this)
-                    .getPreference(AppConstant.KEY_loginStatues, false)
-            ) {
-                if (CommonMethod.getInstance(this)
-                        .getPreference(AppConstant.KEY_loginStatues, true)
-                ) {
-                    val i = Intent(this, MetrilogistHomeActivity::class.java)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(i)
-                    finish()
-                } else {
+    @SuppressLint("MissingPermission")
+    private fun fetchCurrentLocationForLaunch() {
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-                    val i = Intent(applicationContext, MetrologistLogInActivity::class.java)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(i)
-                    finish()
-                }
-            } else{
-                if (isVerified=="1"){
-                    val i = Intent(this, SelectOptionActivity::class.java)
-                    startActivity(i)
-                    finish()
-                }else{
-                    val i = Intent(this, LocationActivity::class.java)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(i)
-                    finish()
-                }
+        // Prefer current fix (lastLocation is frequently null on cold start).
+        mFusedLocationClient.getCurrentLocation(
+            com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY,
+            null
+        ).addOnSuccessListener { location: Location? ->
+            if (location != null) {
+                CommonMethod.getInstance(this).savePreference(
+                    AppConstant.location,
+                    location.latitude.toString()
+                )
+                CommonMethod.getInstance(this).savePreference(
+                    AppConstant.Longituted,
+                    location.longitude.toString()
+                )
 
-
+                Log.d("SplashLocation", "Lat=${location.latitude}, Lon=${location.longitude}")
+            } else {
+                Log.w("SplashLocation", "Current location is null")
             }
-        }, 5000)
+        }.addOnFailureListener { e ->
+            Log.e("SplashLocation", "Failed to get current location", e)
+        }
     }
+
+private fun jump() {
+   val isVerified: String = sessionManager!!.isVerified()
+   Log.d("TAG", "dsafgh: ${isVerified}")
+   Handler().postDelayed({
+       if (CommonMethod.getInstance(this).getPreference(AppConstant.KEY_loginStatus, false)) {
+           if (CommonMethod.getInstance(this).getPreference(AppConstant.KEY_loginStatus, false)
+           ) {
+               val i = Intent(applicationContext, HomeActivity::class.java)
+                   .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+               startActivity(i)
+               finish()
+           } else {
+               val i = Intent(this, LoginActivity::class.java)
+                   .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+               startActivity(i)
+               finish()
+           }
+       } else if (CommonMethod.getInstance(this)
+               .getPreference(AppConstant.KEY_loginStatues, false)
+       ) {
+           if (CommonMethod.getInstance(this)
+                   .getPreference(AppConstant.KEY_loginStatues, true)
+           ) {
+               val i = Intent(this, MetrilogistHomeActivity::class.java)
+                   .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+               startActivity(i)
+               finish()
+           } else {
+
+               val i = Intent(applicationContext, MetrologistLogInActivity::class.java)
+                   .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+               startActivity(i)
+               finish()
+           }
+       } else{
+           if (isVerified=="1"){
+               val i = Intent(this, SelectOptionActivity::class.java)
+               startActivity(i)
+               finish()
+           }else{
+               val i = Intent(this, LocationActivity::class.java)
+                   .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+               startActivity(i)
+               finish()
+           }
+
+
+       }
+   }, 5000)
+}
 }
 

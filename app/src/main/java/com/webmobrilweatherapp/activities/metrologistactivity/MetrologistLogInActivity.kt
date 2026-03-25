@@ -92,11 +92,14 @@ class MetrologistLogInActivity : AppCompatActivity() {
 
                     if(it.status.toString().equals("2"))
                     {
+                        CommonMethod.clearSharedWeatherLocationSession(this)
                         var intent = Intent(this, MetrologistVerificationAccountActivity::class.java)
                         intent.putExtra("email", etEmail)
                         startActivity(intent)
                     }
                     else {
+                        // Fresh session for this account (e.g. switched from end-user)
+                        CommonMethod.clearSharedWeatherLocationSession(this)
                         if (it.data!!.selectButterfly.toString().equals("null")) {
 
                             var a=0

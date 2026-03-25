@@ -144,7 +144,7 @@ class ProfileHomefragmentMetrologist : Fragment(), BottomInterfacemretologist,
                         else
                         {
                             binding.txtnodata.visibility = GONE
-                            Toast.makeText(context,"no more post available", Toast.LENGTH_LONG).show()
+//                            Toast.makeText(context,"no more post available", Toast.LENGTH_LONG).show()
                         }
                     }
                     //Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()

@@ -52,6 +52,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.InputStream
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -74,6 +75,11 @@ class UserChatActivity : AppCompatActivity() {
     private val pusherAppCluster = "ap2"
     private var formattedDate:String = ""
     private var userType=0
+    private var pendingImagePick: PendingImagePick? = null
+
+    private enum class PendingImagePick {
+        CAMERA, GALLERY
+    }
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -318,17 +324,15 @@ class UserChatActivity : AppCompatActivity() {
         ) { dialog: DialogInterface, item: Int ->
             if (options[item] == "Take Photo") {
                 dialog.dismiss()
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(intent, 0)
-
-
-
-
-
+                pendingImagePick = PendingImagePick.CAMERA
+                if (checkAndRequestPermissions(PendingImagePick.CAMERA)) {
+                    launchPendingPick()
+                }
             } else if (options[item] == "Choose From Gallery") {
-                val intentGalley = Intent(Intent.ACTION_PICK)
-                intentGalley.type = "image/*"
-                startActivityForResult(intentGalley, 1)
+                pendingImagePick = PendingImagePick.GALLERY
+                if (checkAndRequestPermissions(PendingImagePick.GALLERY)) {
+                    launchPendingPick()
+                }
               /*  val intent =
                     Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 startActivityForResult(intent, 1)*/
@@ -337,101 +341,72 @@ class UserChatActivity : AppCompatActivity() {
         builder.show()
     }
 
-    private fun checkAndRequestPermissions(): Boolean {
+    private fun checkAndRequestPermissions(pick: PendingImagePick): Boolean {
+        val listPermissionsNeeded: MutableList<String> = ArrayList()
 
-
-
-        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q){
-            val READ_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(
-                this, Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-            val WRITE_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-            val CAMERA = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            val listPermissionsNeeded: MutableList<String> = ArrayList()
-            if (READ_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-            }
-            if (WRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            }
-            if (CAMERA != PackageManager.PERMISSION_GRANTED) {
+        if (pick == PendingImagePick.CAMERA) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
                 listPermissionsNeeded.add(Manifest.permission.CAMERA)
             }
-            if (!listPermissionsNeeded.isEmpty()) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    listPermissionsNeeded.toTypedArray(),
-                    RequestPermissionCode
-                )
-                return false
+        } else if (pick == PendingImagePick.GALLERY) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
+                    != PackageManager.PERMISSION_GRANTED
+                ) {
+                    listPermissionsNeeded.add(Manifest.permission.READ_MEDIA_IMAGES)
+                }
+            } else {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED
+                ) {
+                    listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
             }
         }
 
-        // For Android 11 and 12 (API levels 30 and 31)
-        if( Build.VERSION.SDK_INT in Build.VERSION_CODES.R..Build.VERSION_CODES.S_V2) {
-            val READ_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(
-                this, Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-
-            val CAMERA = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            val listPermissionsNeeded: MutableList<String> = ArrayList()
-            if (READ_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-            }
-            if (CAMERA != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.CAMERA)
-            }
-            if (!listPermissionsNeeded.isEmpty()) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    listPermissionsNeeded.toTypedArray(),
-                    RequestPermissionCode
-                )
-                return false
-            }
-        }
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            val READ_MEDIA_VIDEO = ContextCompat.checkSelfPermission(
-                this, Manifest.permission.READ_MEDIA_VIDEO
-            )
-            val READ_MEDIA_IMAGES = ContextCompat.checkSelfPermission(
+        if (listPermissionsNeeded.isNotEmpty()) {
+            ActivityCompat.requestPermissions(
                 this,
-                Manifest.permission.READ_MEDIA_IMAGES
+                listPermissionsNeeded.toTypedArray(),
+                RequestPermissionCode
             )
-            val READ_MEDIA_AUDIO = ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_MEDIA_AUDIO
-            )
-            val CAMERA = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            val listPermissionsNeeded: MutableList<String> = ArrayList()
-            if (READ_MEDIA_VIDEO != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.READ_MEDIA_VIDEO)
-            }
-            if (READ_MEDIA_IMAGES != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.READ_MEDIA_IMAGES)
-            }
-            if (READ_MEDIA_AUDIO != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.READ_MEDIA_AUDIO)
-            }
-            if (CAMERA != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.CAMERA)
-            }
-
-            if (!listPermissionsNeeded.isEmpty()) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    listPermissionsNeeded.toTypedArray(),
-                    RequestPermissionCode
-                )
-                return false
-            }
+            return false
         }
 
         return true
+    }
+
+    private fun launchPendingPick() {
+        when (pendingImagePick) {
+            PendingImagePick.CAMERA -> {
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(intent, 0)
+            }
+            PendingImagePick.GALLERY -> {
+                val intentGalley = Intent(Intent.ACTION_PICK).apply { type = "image/*" }
+                startActivityForResult(intentGalley, 1)
+            }
+            null -> Unit
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode != RequestPermissionCode) return
+
+        val granted = grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
+        if (granted) {
+            launchPendingPick()
+        } else {
+            Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+            pendingImagePick = null
+        }
     }
 
 
@@ -506,6 +481,7 @@ class UserChatActivity : AppCompatActivity() {
         }
     */
 
+    @RequiresApi(Build.VERSION_CODES.N)
     @Override
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -543,29 +519,17 @@ class UserChatActivity : AppCompatActivity() {
 
             }
             1 -> if (resultCode == RESULT_OK) {
-                var selectedImage: Uri? = null
-                if (data != null) {
-                    selectedImage = data.data
-                }
-                val filepath = arrayOf(MediaStore.Images.Media.DATA)
-                var c: Cursor? = null
+                val selectedImage = data?.data
                 if (selectedImage != null) {
-                    c = getContentResolver()
-                        .query(selectedImage, filepath, null, null, null)
+                    val thumbnail = contentResolver.openInputStream(selectedImage)?.use { input ->
+                        BitmapFactory.decodeStream(input)
+                    }
+                    if (thumbnail != null) {
+                        setImage(thumbnail, selectedImage)
+                    } else {
+                        Toast.makeText(this, "Unable to read image", Toast.LENGTH_SHORT).show()
+                    }
                 }
-                c?.moveToFirst()
-                var columnIndex = 0
-                if (c != null) {
-                    columnIndex = c.getColumnIndex(filepath[0])
-                }
-                val picturePath = c!!.getString(columnIndex)
-                c.close()
-                val thumbnail = BitmapFactory.decodeFile(picturePath)
-                getImageUri(this, thumbnail)?.let {
-                    setImage(thumbnail, it)
-                }
-
-                Log.e("gallery",thumbnail.toString())
              //  Toast.makeText(this, thumbnail.toString(), Toast.LENGTH_SHORT).show()
 
             }
@@ -769,6 +733,7 @@ class UserChatActivity : AppCompatActivity() {
         return ret
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun setImage(bitmap: Bitmap, imageUri: Uri) {
         // profile_image.setImageBitmap(bmp)
         // binding.ImgUploadImgSignup.visibility=VISIBLE
@@ -778,8 +743,25 @@ class UserChatActivity : AppCompatActivity() {
              .error(R.drawable.appicon)
              .placeholder(R.drawable.appicon)
              .into(binding.imgProfile)*/
-        Log.i("TAG", "setImage123: " + getUriRealPath(this, imageUri))
-        uploadedImageFile = File(getUriRealPath(this, imageUri))
+        uploadedImageFile = try {
+            when (imageUri.scheme) {
+                "file" -> imageUri.path?.let { File(it) }
+                "content" -> copyUriToCacheFile(imageUri)
+                else -> null
+            } ?: run {
+                // Fallback: persist bitmap to cache and use it
+                getImageUri(this, bitmap)?.path?.let { File(it) }
+            }
+        } catch (e: Exception) {
+            Log.e("UserChatActivity", "Failed to prepare image file", e)
+            null
+        }
+
+        if (uploadedImageFile == null || !uploadedImageFile!!.exists()) {
+            Toast.makeText(this, "Unable to prepare image", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val requestFile = uploadedImageFile.getRequestBody()
         image = MultipartBody.Part.createFormData("message", uploadedImageFile!!.name, requestFile)
         sendMessageImage()
@@ -789,6 +771,19 @@ class UserChatActivity : AppCompatActivity() {
             PrefManager.getInstance(this).getPreference(AppConstant.KEY_AUTH_TOKEN),
             uploadedImageFile
         )*/
+    }
+
+    private fun copyUriToCacheFile(uri: Uri): File? {
+        val name = getFileName(uri)?.ifBlank { "image_${System.currentTimeMillis()}.jpg" }
+        val outFile = File(cacheDir, name)
+
+        val input: InputStream = contentResolver.openInputStream(uri) ?: return null
+        input.use { inStream ->
+            FileOutputStream(outFile).use { outStream ->
+                IoUtils.copy(inStream, outStream)
+            }
+        }
+        return outFile
     }
 
     private fun isDownloadDoc(uriAuthority: String): Boolean {

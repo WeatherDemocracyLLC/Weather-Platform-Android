@@ -139,7 +139,7 @@ class ProfilePostsFragmentMetrologist : Fragment(), BottomInterfacemretologist,
                         else
                         {
                             binding.txtNoPhoto.visibility = GONE
-                            Toast.makeText(context,"no more post available", Toast.LENGTH_LONG).show()
+//                            Toast.makeText(context,"no more post available", Toast.LENGTH_LONG).show()
                         }
                     }
 

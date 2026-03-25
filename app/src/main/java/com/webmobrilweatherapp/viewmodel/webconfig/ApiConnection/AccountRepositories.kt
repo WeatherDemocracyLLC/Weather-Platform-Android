@@ -377,6 +377,12 @@ class AccountRepositories {
     }
     fun getVote( is_temp: String, temp_value: String,precipitation_id: String,weatherdate: String,token:String
     ): LiveData<VoteResponse?> {
+
+        Log.e("temp", is_temp)
+        Log.e("temp_value", temp_value)
+        Log.e("precipitation_id", precipitation_id)
+        Log.e("weatherdate", weatherdate)
+        Log.e("token", token)
         val mutableLiveData = MutableLiveData<VoteResponse?>()
         val apiService = RetrofitConnection.instance?.createService()
         val call = apiService!!.getVote(is_temp,temp_value,precipitation_id,weatherdate,token)
@@ -1522,7 +1528,7 @@ class AccountRepositories {
         val mutableLiveData = MutableLiveData<RequestAcceptRejectResponse?>()
         val apiService = RetrofitConnection.instance?.createService()
         val call = apiService!!.getRequestAcceptReject(status,requestFrom,token)
-        call!!.enqueue(object : Callback<RequestAcceptRejectResponse?> {
+        call.enqueue(object : Callback<RequestAcceptRejectResponse?> {
             override fun onResponse(
                 call: Call<RequestAcceptRejectResponse?>,
                 response: Response<RequestAcceptRejectResponse?>

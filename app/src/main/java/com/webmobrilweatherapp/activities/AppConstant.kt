@@ -4,6 +4,7 @@ object AppConstant {
     const val MY_PREFS_NAME = "WeatherApp"
     const val KEY_loginStatus = "KEY_loginStatus"
     const val KEY_loginStatues = "KEY_loginStatuss"
+    const val KEY_USER_MANUALLY_SELECTED_LOCATION = "user_manually_selected_location"
 
     const val Key_ApplicationId="ApplicationId"
 

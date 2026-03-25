@@ -153,11 +153,15 @@ class UserSearchprofileAdapter(private val context: Context, private val listMod
                     list!!.addAll(searchResults)
                 }*/
                 else {
+                    val query = constraint.toString().lowercase(Locale.ROOT)
+                    val seenIds = HashSet<Int?>()
                     for (item in originalList) {
-                        if (item.name!!.toLowerCase(Locale.ROOT)
-                                .contains(constraint)
-                        )
-                            listModel!!.add(item)
+                        val name = item.name?.lowercase(Locale.ROOT).orEmpty()
+                        if (name.contains(query)) {
+                            if (seenIds.add(item.id)) {
+                                listModel!!.add(item)
+                            }
+                        }
 
                     }
                     /*  val searchResults =
@@ -185,11 +189,9 @@ class UserSearchprofileAdapter(private val context: Context, private val listMod
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 // no need to use "results" filtered list provided by this method.
 
-                if (listModel.isNullOrEmpty())
-
-txt.visibility=View.VISIBLE
+                txt.visibility = if (listModel.isNullOrEmpty()) View.VISIBLE else View.GONE
                   //  Toast.makeText(context, "No User", Toast.LENGTH_SHORT).show()
-                    notifyDataSetChanged()
+                notifyDataSetChanged()
 
 
             }

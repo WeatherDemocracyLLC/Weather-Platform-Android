@@ -37,6 +37,7 @@ class MyAccountProfileMetrologistActivity : AppCompatActivity() {
         alertDialogBuilder.setPositiveButton(
             "Yes"
         ) { arg0, arg1 ->
+            CommonMethod.clearSharedWeatherLocationSession(this)
             val intent = Intent(this, SelectOptionActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)

@@ -3,6 +3,7 @@ package com.webmobrilweatherapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webmobrilweatherapp.R
@@ -34,6 +35,8 @@ class FollowersActivity : AppCompatActivity() {
     }
 
     private fun getFollowers() {
+
+        Log.e("Coming in followers list", "yes")
         ProgressD.showLoading(this, getResources().getString(R.string.logging_in))
 
         accountViewModel?.getFollowers("Bearer " + CommonMethod.getInstance(this).getPreference(

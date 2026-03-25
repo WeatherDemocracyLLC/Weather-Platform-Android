@@ -80,7 +80,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         val value = ai.metaData["AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"]
         //  val apiKey = value.toString()
         //val apiKey = "AIzaSyBlCaysRN5XHvtLzJIyRkjaiXEKQbOl1c8"
-        val apiKey = "AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+//        val apiKey = "AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+//        val apiKey = "AIzaSyBXXPfxpa4HdGUrWFzVeyrlOos1JVwvkeE"
+        val apiKey = "AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4"
         Log.e("apiKey", apiKey)
 
 
@@ -432,12 +434,17 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
             }
             return
         }
+        else{
+            Log.e("Error", "in search");
+        }
         super.onActivityResult(requestCode, resultCode, data)
     }
     private fun getalllocation(latitude: String, longitude: String) {
         // ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
         accountViewModel?.getalllocation(
-            (latitude+","+longitude),"AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+//            (latitude+","+longitude),"AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+//            (latitude+","+longitude),"AIzaSyBXXPfxpa4HdGUrWFzVeyrlOos1JVwvkeE"
+            (latitude+","+longitude),"AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4"
         )?.observe(this) {
             //ProgressD.hideProgressDialog()
             if (it != null) {

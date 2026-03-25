@@ -36,6 +36,8 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.webmobrilweatherapp.R
 import com.webmobrilweatherapp.activities.metrologistactivity.WerViewActivity
 import com.webmobrilweatherapp.databinding.ActivityHomeBinding
@@ -88,20 +90,20 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         super.onCreate(savedInstanceState)
         usertype = intent.getStringExtra(AppConstant.USER_TYPE).toString()
         lc1=CommonMethod.getInstance(this).getPreference(AppConstant.lc1)
+//        latitude = intent?.getDoubleExtra("lat",0.0)!!
+//        longitude = intent?.getDoubleExtra("long",0.0)!!
+//
+//        Log.d("LOCATION", "Lat: $latitude, Long: $long")
+
 
         MySingleton.handleTheme(this, usertype)
         accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         binding.layoutContent.navView.setOnNavigationItemSelectedListener(this)
 
-
-
-        if(lc1!=null)
-        {
+        if (lc1 != null && lc1 != "0") {
             binding.layoutContent.toolbar.txtLocation.setText(lc1)
-
         }
-        // getLastLocation()
 
         detailss= getIntent().getExtras()?.getString("details").toString()
         //Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()
@@ -121,7 +123,22 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
             UpdateHomeFragments(HomeFragment(), "Home")
             getuserprofile()
-            getLocation()
+            // App launch behavior:
+            // - If user manually picked a location, coordinates are already saved.
+            // - Otherwise, fetch CURRENT device location reliably (not lastKnownLocation).
+            val userSelected = CommonMethod.getInstance(this)
+                .getPreference(AppConstant.KEY_USER_MANUALLY_SELECTED_LOCATION, false)
+            if (userSelected) {
+                val savedLat = CommonMethod.getInstance(this).getPreference(AppConstant.location, "0.0")
+                val savedLon = CommonMethod.getInstance(this).getPreference(AppConstant.Longituted, "0.0")
+                if (savedLat != "0.0" && savedLon != "0.0") {
+                    getalllocation(savedLat, savedLon)
+                } else {
+                    fetchCurrentLocationAndLoad()
+                }
+            } else {
+                fetchCurrentLocationAndLoad()
+            }
 
 
             val ai: ApplicationInfo = applicationContext.packageManager
@@ -129,7 +146,9 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             val value = ai.metaData["AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"]
             //  val apiKey = value.toString()
             //val apiKey = "AIzaSyBlCaysRN5XHvtLzJIyRkjaiXEKQbOl1c8"
-            val apiKey = "AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+//            val apiKey = "AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+//            val apiKey = "AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4"
+            val apiKey = "AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4"
 
             Log.e("apiKey", apiKey)
 
@@ -315,6 +334,26 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     }
 
+    @SuppressLint("MissingPermission")
+    private fun fetchCurrentLocationAndLoad() {
+        val fused = LocationServices.getFusedLocationProviderClient(this)
+        fused.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)
+            .addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    val lat = location.latitude.toString()
+                    val lon = location.longitude.toString()
+                    CommonMethod.getInstance(this).savePreference(AppConstant.location, lat)
+                    CommonMethod.getInstance(this).savePreference(AppConstant.Longituted, lon)
+                    getalllocation(lat, lon)
+                } else {
+                    Log.w("HomeActivity", "Current location is null")
+                }
+            }
+            .addOnFailureListener {
+                Log.e("HomeActivity", "Failed to get current location", it)
+            }
+    }
+
     private fun updateNotificationCount() {
         val badgeTextView = findViewById<TextView>(R.id.tv_notification_count)
         val count = NotificationUtils.getNotificationCount(this)
@@ -447,7 +486,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
          super.onResume()
      }*/
 
-    private fun getuserprofile() {
+    private fun     getuserprofile() {
         //ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
         userid = CommonMethod.getInstance(this).getPreference(AppConstant.KEY_User_id, 0)
         accountViewModel?.getuserprofile(
@@ -514,6 +553,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             ?.observe(this) {
                 ProgressD.hideProgressDialog()
                 if (it != null && it.code == 200) {
+                    CommonMethod.clearSharedWeatherLocationSession(this)
                     CommonMethod.getInstance(this).savePreference(AppConstant.KEY_ID_SHARE,"0")
 
                     val intent = Intent(this, SelectOptionActivity::class.java)
@@ -525,96 +565,78 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                     Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()
 
                 } else if (it!!.code == 401) {
+                    CommonMethod.clearSharedWeatherLocationSession(this)
                     CommonMethod.getInstance(this).savePreference(AppConstant.KEY_ID_SHARE,"0")
 
                     val intent = Intent(this, SelectOptionActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
                     finishAffinity()
+                    CommonMethod.getInstance(this).savePreference(AppConstant.KEY_loginStatus, false)
                     Toast.makeText(this, it?.message, Toast.LENGTH_LONG).show()
                 }
             }
     }
 
-    private fun getLocation() {
-        try {
-            locationManager = this.getSystemService(LOCATION_SERVICE) as LocationManager
-            // get GPS status
-            if (locationManager != null) {
-                checkGPS = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
-            }
-
-            checkNetwork = locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-            if (!checkGPS && !checkNetwork) {
-                Toast.makeText(this, "No Service Provider is available", Toast.LENGTH_SHORT).show()
-            } else {
-                this.canGetLocation = true
-                if (checkGPS) {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                    }
-                    /*  locationManager.requestLocationUpdates(
-                            LocationManager.GPS_PROVIDER,
-                            MIN_TIME_BW_UPDATES,
-                            MIN_DISTANCE_CHANGE_FOR_UPDATES, (LocationListener) this);*/Log.e(
-                        "locationManager",
-                        "locationManager$locationManager"
-                    )
-                    if (locationManager != null) {
-                        Log.e("locationManager", "locationManager")
-                        loc = locationManager!!
-                            .getLastKnownLocation(LocationManager.GPS_PROVIDER)
-                        if (loc != null) {
-                            val latitude: String = loc!!.getLatitude().toString()
-                            val longitude: String = loc!!.getLongitude().toString()
-                            getalllocation(latitude,longitude)
-                            //getCompleteAddress(latitude, longitude)
-                            CommonMethod.getInstance(this).savePreference(AppConstant.location, latitude)
-                            CommonMethod.getInstance(this).savePreference(AppConstant.Longituted, longitude)
-                         }
-                    }
-
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
+    // NOTE: legacy LocationManager lastKnownLocation logic removed.
+    // It was the cause of cold-start "location is null" / no weather load.
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                var place: Place? = null
-                if (data != null) {
-                    place = Autocomplete.getPlaceFromIntent(data)
-                    Log.e("TAG", "Place: " + place.name + ", " + place.id)
-                    latitude = Objects.requireNonNull(place.latLng).latitude
-                    longitude = place.latLng.longitude
-                    var cityjgkjfd=place.plusCode
-                    Log.d("TAG", "gfgfdgdfgdfg: "+latitude+longitude)
-                   // getCompleteAddress(latitude,longitude)
-                    getalllocation(latitude.toString(),longitude.toString())
-                    CommonMethod.getInstance(this).savePreference(AppConstant.cityName, place.name.toString())
-                    //getCountryCityCode(latitude, longitude)
 
-                }
-            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                val status = Autocomplete.getStatusFromIntent(data)
-                assert(status.statusMessage != null)
-                Log.e("TAG", status.statusMessage!!)
-            } else if (resultCode == RESULT_CANCELED) {
-                // The user canceled the operation.
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK && data != null) {
+                val place = Autocomplete.getPlaceFromIntent(data)
+
+                val latLng = place.latLng ?: return
+
+                latitude  = latLng.latitude
+                longitude = latLng.longitude
+
+                // ────────────────────────────────────────
+                // MOST IMPORTANT PART ─ user selected location!
+                // ──────────────────────────────────────── 
+                CommonMethod.getInstance(this).savePreference( 
+                    AppConstant.KEY_USER_MANUALLY_SELECTED_LOCATION,
+                    true
+                )
+
+                // Also save coordinates
+                CommonMethod.getInstance(this).savePreference(AppConstant.location, latitude.toString())
+                CommonMethod.getInstance(this).savePreference(AppConstant.Longituted, longitude.toString())
+
+                // Get place name / plus code etc.
+                getalllocation(latitude.toString(), longitude.toString())
+
+                // Optional: show toast or log
+                // Toast.makeText(this, "Location set: ${place.name}", Toast.LENGTH_SHORT).show()
             }
-            return
         }
+//        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                var place: Place? = null
+//                if (data != null) {
+//                    place = Autocomplete.getPlaceFromIntent(data)
+//                    Log.e("TAG", "Place: " + place.name + ", " + place.id)
+//                    latitude = Objects.requireNonNull(place.latLng).latitude
+//                    longitude = place.latLng.longitude
+//                    var cityjgkjfd=place.plusCode
+//                    Log.d("TAG", "gfgfdgdfgdfg: "+latitude+longitude)
+//                   // getCompleteAddress(latitude,longitude)
+//                    getalllocation(latitude.toString(),longitude.toString())
+//                    CommonMethod.getInstance(this).savePreference(AppConstant.cityName, place.name.toString())
+//                    //getCountryCityCode(latitude, longitude)
+//
+//                }
+//            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+//                val status = Autocomplete.getStatusFromIntent(data)
+//                assert(status.statusMessage != null)
+//                Log.e("TAG", status.statusMessage!!)
+//            } else if (resultCode == RESULT_CANCELED) {
+//                // The user canceled the operation.
+//            }
+//            return
+//        }
         super.onActivityResult(requestCode, resultCode, data)
     }
 
@@ -679,7 +701,8 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         println(longitude)
             // ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
             accountViewModel?.getalllocation(
-                (latitude+","+longitude),"AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+//                (latitude+","+longitude),"AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
+                (latitude+","+longitude),"AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4"
             )?.observe(this) {
                 //ProgressD.hideProgressDialog()
                 if (it != null) {
@@ -691,7 +714,16 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                         val upToNCharacters: String = date!!.substring(8, Math.min(date.length,40))
                         CommonMethod.getInstance(this).savePreference(AppConstant.lc1, upToNCharacters)
                         binding.layoutContent.toolbar.txtLocation.setText(upToNCharacters)
-                        UpdateHomeFragments(HomeFragment(), "Home")
+                        val fragment = HomeFragment()
+
+                        val bundle = Bundle()
+                        bundle.putString("lat", latitude.toString())
+                        bundle.putString("long", longitude.toString())
+
+                        fragment.arguments = bundle
+
+                        UpdateHomeFragments(fragment, "Home")
+//                        UpdateHomeFragments(HomeFragment(), "Home")
 
                     }else{
                          Toast.makeText(this,"Please Enter Valid City Name",Toast.LENGTH_LONG).show()

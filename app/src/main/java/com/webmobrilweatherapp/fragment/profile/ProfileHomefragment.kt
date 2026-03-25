@@ -194,11 +194,11 @@ class ProfileHomefragment : Fragment(), BottomInterface, LikeInterface {
                                     binding.txtNoweather.visibility = VISIBLE
                                 } else {
                                     binding.txtNoweather.visibility = GONE
-                                    Toast.makeText(
-                                        context,
-                                        "no more post available",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+//                                    Toast.makeText(
+//                                        context,
+//                                        "no more post available",
+//                                        Toast.LENGTH_LONG
+//                                    ).show()
                                 }
 
                             }
