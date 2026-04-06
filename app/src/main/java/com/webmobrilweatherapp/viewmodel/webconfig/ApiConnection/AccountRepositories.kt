@@ -260,7 +260,7 @@ class AccountRepositories {
     ): LiveData<HomePageResponse?> {
         val mutableLiveData = MutableLiveData<HomePageResponse?>()
         val apiService = RetrofitConnectionLocation.instance?.createServiceeee()
-        val call=apiService!!.getHomeapge("wkw7ho4Gya6HakuE7dNcEVEHIVJMZAhU",longitude,language,details)
+        val call=apiService!!.getHomeapge("9d35100f47msh8c8f1ff884860a4p153dd5jsn595cd3b79433",longitude,language,details)
         call!!.enqueue(object : Callback<HomePageResponse?> {
             override fun onResponse(
                 call: Call<HomePageResponse?>,
@@ -287,6 +287,8 @@ class AccountRepositories {
     }
     fun getalllocation(latlng:String,key:String
     ): LiveData<GetallLocationResponse?> {
+
+        Log.e("All location", latlng)
         val mutableLiveData = MutableLiveData<GetallLocationResponse?>()
         val apiService = RetrofitConnectionLocation.instance?.createServiceeee()
         val call=apiService!!.getalllocation(latlng,key)
@@ -923,30 +925,56 @@ class AccountRepositories {
                 if (response.isSuccessful) {
                     mutableLiveData.setValue(response.body())
 
-                } else {
-                    //statusMessageModel.setError(false);
-                  //  mutableLiveData.setValue(response.body())
+
+                }
+
+
+                else {
                     ProgressD.hideProgressDialog()
 
                     try {
+                        val errorBody = response.errorBody()?.string()
+                        Log.e(TAG, "Error Body: $errorBody")
 
-                        if(response.message().equals("Not Found")){
-                            Toast.makeText(context, "Data not found!", Toast.LENGTH_SHORT).show()
-                        }
-                        val jObjError = JSONObject(response.errorBody()!!.string())
-                        val errorMsg = jObjError.getInt("Not Found")
-                        Log.e("response errorMsg", "=" + errorMsg)
-                        //Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()
-                        Log.e("no data fond",errorMsg.toString()+"    "+Gson().toJson(response))
-                        Toast.makeText(context, "data not found", Toast.LENGTH_SHORT).show()
+                        // Convert error JSON to your model
+                        val errorResponse = Gson().fromJson(
+                            errorBody,
+                            NotificationResponse::class.java
+                        )
 
-                        if(errorMsg.equals("Not Found")){
-                            Toast.makeText(context, "data not found", Toast.LENGTH_SHORT).show()
-                            Log.e("no data fond",errorMsg.toString()+"    "+Gson().toJson(response))
-                        }
+                        mutableLiveData.value = errorResponse   // 🔥 VERY IMPORTANT
+
                     } catch (e: Exception) {
+                        e.printStackTrace()
+                        mutableLiveData.value = null
                     }
                 }
+
+
+//                else {
+//                    //statusMessageModel.setError(false);
+//                  //  mutableLiveData.setValue(response.body())
+//                    ProgressD.hideProgressDialog()
+//
+//                    try {
+//
+//                        if(response.message().equals("Not Found")){
+//                            Toast.makeText(context, "Data not found!", Toast.LENGTH_SHORT).show()
+//                        }
+//                        val jObjError = JSONObject(response.errorBody()!!.string())
+//                        val errorMsg = jObjError.getInt("Not Found")
+//                        Log.e("response errorMsg", "=" + errorMsg)
+//                        //Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()
+//                        Log.e("no data fond",errorMsg.toString()+"    "+Gson().toJson(response))
+//                        Toast.makeText(context, "data not found", Toast.LENGTH_SHORT).show()
+//
+//                        if(errorMsg.equals("Not Found")){
+//                            Toast.makeText(context, "data not found", Toast.LENGTH_SHORT).show()
+//                            Log.e("no data fond",errorMsg.toString()+"    "+Gson().toJson(response))
+//                        }
+//                    } catch (e: Exception) {
+//                    }
+//                }
             }
             override fun onFailure(call: Call<NotificationResponse?>, t: Throwable) {
                 Objects.requireNonNull(t.message)?.let { Log.e("error", it) }
@@ -1403,21 +1431,43 @@ class AccountRepositories {
                 Log.e(TAG, Gson().toJson(response.message()))
                 if (response.isSuccessful) {
                     mutableLiveData.setValue(response.body())
-                } else {
-                    //statusMessageModel.setError(false);
-               //     mutableLiveData.setValue(response.body())
-                    ProgressD.hideProgressDialog()
-                    try {
-
-                        if(response.message().equals("Not Found")){
-                            Toast.makeText(context, "Data not found!", Toast.LENGTH_SHORT).show()
-                        }
                 }
-                    catch (e: Exception)
-                    {
 
+                else {
+                    ProgressD.hideProgressDialog()
 
-                    }                    }
+                    try {
+                        val errorBody = response.errorBody()?.string()
+                        Log.e(TAG, "Error Body: $errorBody")
+
+                        // Convert error JSON to your model
+                        val errorResponse = Gson().fromJson(
+                            errorBody,
+                            ChallengeByFriendsResponse::class.java
+                        )
+
+                        mutableLiveData.value = errorResponse   // 🔥 VERY IMPORTANT
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        mutableLiveData.value = null
+                    }
+                }
+//                else {
+//                    //statusMessageModel.setError(false);
+//               //     mutableLiveData.setValue(response.body())
+//                    ProgressD.hideProgressDialog()
+//                    try {
+//
+//                        if(response.message().equals("Not Found")){
+//                            Toast.makeText(context, "Data not found!", Toast.LENGTH_SHORT).show()
+//                        }
+//                }
+//                    catch (e: Exception)
+//                    {
+//
+//
+//                    }                    }
             }
             override fun onFailure(call: Call<ChallengeByFriendsResponse?>, t: Throwable) {
                 Objects.requireNonNull(t.message)?.let { Log.e("error", it) }
@@ -1442,7 +1492,8 @@ class AccountRepositories {
                 Log.e(TAG, Gson().toJson(response.message()))
                 if (response.isSuccessful) {
                     mutableLiveData.setValue(response.body())
-                } else {
+                }
+                else {
 
                     //statusMessageModel.setError(false);
                     mutableLiveData.setValue(response.body())

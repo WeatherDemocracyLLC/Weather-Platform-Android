@@ -19,7 +19,7 @@ class ApiConstants {
         const val API_GET_STATIC_CONTENT = "get_static_content"
         const val Homepage = "locations/v1/cities/geoposition/search"
         const val LocationCity = "locations/v1/cities/search"
-        const val Homepages = "currentconditions/v1/{key}"
+        const val Homepages = "currentconditions/v1/9d35100f47msh8c8f1ff884860a4p153dd5jsn595cd3b79433"
         const val getvote = "vote"
         const val getCreatepost = "create_post"
         const val getprecipitations = "precipitations"

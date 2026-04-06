@@ -32,9 +32,10 @@ class WeatherMayormetrologistAdapter(private val context: Context,private val li
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.month_name.setText(listmodel.get(position)!!.monthYear.toString())
-        var persentage=listmodel.get(position).voteAccuracy!!.toInt()
-        holder.ProgressBar.setProgress(persentage)
-        holder.txtpersentage.setText(""+persentage+"%")
+        var percentage = listmodel.get(position).voteAccuracy?.toDouble()?.toInt() ?: 0
+
+        holder.ProgressBar.setProgress(percentage)
+        holder.txtpersentage.setText(""+percentage+"%")
         holder.image_name.setText(listmodel[position].mayor!!.name)
         holder.image_name2.setText(listmodel[position].mayor!!.name)
         holder.location_name.setText(listmodel[position].mayor!!.city)

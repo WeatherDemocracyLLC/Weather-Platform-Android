@@ -4,9 +4,11 @@ package com.webmobrilweatherapp.activities.usernotification
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.Manifest
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
@@ -14,7 +16,6 @@ import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.google.gson.Gson
 import com.webmobrilweatherapp.R
 import com.webmobrilweatherapp.activities.AppConstant
 import com.webmobrilweatherapp.activities.CommonMethod
@@ -28,7 +29,6 @@ import com.webmobrilweatherapp.activities.metrologistactivity.MetrologistChatAct
 import com.webmobrilweatherapp.activities.metrologistactivity.MetrologistForecastChallengeActivity
 import com.webmobrilweatherapp.activities.metrologistactivity.MetrologistNotificationActivity
 import com.webmobrilweatherapp.activities.metrologistactivity.MetrologistPostActivity
-import com.webmobrilweatherapp.model.notification.NotificationResponse
 import com.webmobrilweatherapp.utilise.NotificationUtils
 import java.util.Objects
 
@@ -63,8 +63,8 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
 
 
         Log.e("ApplicationId", "" + applicationId)
-        Log.e("MyFireBase", "" + "engio"+ remoteMessage.data.toString())
-        Log.e("MyFireBase", "" + "engio"+ Gson().toJson(remoteMessage.notification.toString()))
+        Log.e("MyFireBase", "data=" + remoteMessage.data.toString())
+        Log.e("MyFireBase", "notification=" + remoteMessage.notification)
 
 //        Log.e("MyFireBase123", "" + "engio"+ Gson().toJson(remoteMessage))
         notificationType = remoteMessage.data["notificationType"]?.toIntOrNull() ?: 0
@@ -179,29 +179,17 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
         Log.e("notificationType", notificationType.toString())
 
 
-        try {
-            val response =
-                remoteMessage.data.toString().substring(0, remoteMessage.data.toString().length - 1)
-            val editResponse = response.replace("{headers={}, original=", "").toString()
-            try {
+        // Don't Gson-parse remoteMessage.data.toString(): it's "{k=v}" (not JSON),
+        // which caused JsonSyntaxException/EOF. Use fields directly.
+        val notifTitle = remoteMessage.data["title"]
+            ?: remoteMessage.notification?.title
+            ?: getString(R.string.app_name)
 
-                val pushResponse: NotificationResponse =
-                    Gson().fromJson(editResponse, NotificationResponse::class.java)
+        val notifMessage = remoteMessage.data["message"]
+            ?: remoteMessage.notification?.body
+            ?: notifTitle
 
-                Log.e("pushResponse body", "---" + pushResponse.message!!)
-                sendNotification(pushResponse.message.toString())
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-                val title = remoteMessage.data["title"].toString()
-                sendNotification(title)
-            }
-
-
-        } catch (e: Exception) {
-            val title = remoteMessage.data["title"].toString()
-            sendNotification(title)
-        }
+        sendNotification(notifMessage, notifTitle)
 
     }
 
@@ -214,7 +202,14 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
 
     }
 
-    private fun sendNotification(title: String) {
+    private fun sendNotification(message: String, title: String) {
+        // Android 13+ requires runtime permission to post notifications.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                Log.w(TAG, "POST_NOTIFICATIONS not granted; skipping notify()")
+                return
+            }
+        }
 
         if (applicationId.equals("1")) {
 
@@ -248,7 +243,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -290,7 +285,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -345,7 +340,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                 // .setContentIntent(pendingIntent)
@@ -388,7 +383,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -432,7 +427,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -478,7 +473,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
             val notificationBuilder = NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(notificationIcon)
                 .setContentTitle("Weather Platform")
-                .setContentText(title)
+                .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent)
@@ -532,7 +527,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -575,7 +570,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -618,7 +613,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -663,7 +658,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -707,7 +702,7 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
                 val notificationBuilder = NotificationCompat.Builder(this, channelId)
                     .setSmallIcon(notificationIcon)
                     .setContentTitle("Weather Platform")
-                    .setContentText(title)
+                    .setContentText(message)
                     .setAutoCancel(true)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -730,6 +725,40 @@ class MyFireBaseMessagingService : FirebaseMessagingService() {
 
             }
 
+        }
+        else {
+            // App not initialized / user not selected module yet (applicationId == "0")
+            // or notificationType missing (notification-only payload). Still show a basic notification.
+            val intent = Intent(this, com.webmobrilweatherapp.activities.SplashActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+
+            val pendingIntent: PendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE)
+            } else {
+                PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+            }
+
+            val channelId = getString(R.string.app_name)
+            val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            val notificationBuilder = NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(notificationIcon)
+                .setContentTitle("Weather Platform")
+                .setContentText(message)
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent)
+
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val channel = NotificationChannel(
+                    channelId,
+                    getString(R.string.app_name),
+                    NotificationManager.IMPORTANCE_DEFAULT
+                )
+                notificationManager.createNotificationChannel(channel)
+            }
+            notificationManager.notify(0, notificationBuilder.build())
         }
     }
 

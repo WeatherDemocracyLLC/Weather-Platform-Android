@@ -1,5 +1,6 @@
 package com.webmobrilweatherapp.activities
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.location.Location
@@ -8,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import android.content.pm.PackageManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnFailureListener
@@ -30,6 +34,7 @@ class SplashActivity : AppCompatActivity() {
     var applicationId="0"
     private var sessionManager: SessionManager? = null
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private val POST_NOTIFICATIONS_REQUEST_CODE = 12001
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +53,7 @@ class SplashActivity : AppCompatActivity() {
         CommonMethod.getInstance(this).savePreference(AppConstant.lc1, "0")
 
         fetchCurrentLocationForLaunch()
+        requestPostNotificationsIfNeeded()
         setContentView(view)
 
         applicationId = CommonMethod.getInstance(this).getPreference(AppConstant.Key_ApplicationId,"0")
@@ -218,6 +224,23 @@ class SplashActivity : AppCompatActivity() {
                             jump()
                         }
                     })
+    }
+
+    private fun requestPostNotificationsIfNeeded() {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.TIRAMISU) return
+
+        val granted = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if (!granted) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                POST_NOTIFICATIONS_REQUEST_CODE
+            )
+        }
     }
 
     @SuppressLint("MissingPermission")

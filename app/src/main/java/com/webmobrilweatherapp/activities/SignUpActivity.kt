@@ -83,6 +83,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 //        val apiKey = "AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
 //        val apiKey = "AIzaSyBXXPfxpa4HdGUrWFzVeyrlOos1JVwvkeE"
         val apiKey = "AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4"
+//        val apiKey = "AIzaSyBx3nZ2OvkSd2NR8ehqottai9ME8dwEggk"
         Log.e("apiKey", apiKey)
 
 
@@ -445,6 +446,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 //            (latitude+","+longitude),"AIzaSyCnRAGJaYpc4edJi8DcHaimmJ9mW4k4EVM"
 //            (latitude+","+longitude),"AIzaSyBXXPfxpa4HdGUrWFzVeyrlOos1JVwvkeE"
             (latitude+","+longitude),"AIzaSyBGlucHwOkpJYBAivcjZ0vKShxBUjMoVm4"
+//            (latitude+","+longitude),"AIzaSyBXXPfxpa4HdGUrWFzVeyrlOos1JVwvkeE"
         )?.observe(this) {
             //ProgressD.hideProgressDialog()
             if (it != null) {

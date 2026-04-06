@@ -194,9 +194,12 @@ class ChallengeByMeFriends : Fragment(), challengebyfriend_Adapter.SelectItem,ch
             ?.observe(this) {
                 ProgressD.hideProgressDialog()
                 if (it != null && it.success== true) {
+
+                    Log.e("1234","1234")
                     //Toast.makeText(context, it?.message.toString(), Toast.LENGTH_LONG).show()
 
                     if(it.data?.size!! >0) {
+                        Log.e("1234","123456")
                         binding.noNoChallenge.visibility= View.GONE
 
                         val layoutManager =
@@ -215,10 +218,12 @@ class ChallengeByMeFriends : Fragment(), challengebyfriend_Adapter.SelectItem,ch
                             )
                     }
                     else{
+                        Log.e("1234","1234123")
                         binding.noNoChallenge.visibility= View.VISIBLE
                     }
 
                 } else {
+                    Log.e("1234","12341234")
                     binding.noNoChallenge.visibility= View.VISIBLE
                     Toast.makeText(context, it?.message, Toast.LENGTH_LONG).show()
                 }

@@ -378,7 +378,8 @@ private fun getTendaysWeather(strkey: String) {
     // key= CommonMethod.getInstance(requireContext()).getPreference(AppConstant.KEY)
     if (this != null) {
         //ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
-        accountViewModel?.getTendays(strkey, "wkw7ho4Gya6HakuE7dNcEVEHIVJMZAhU")
+//        accountViewModel?.getTendays(strkey, "wkw7ho4Gya6HakuE7dNcEVEHIVJMZAhU")
+        accountViewModel?.getTendays(strkey, "9d35100f47msh8c8f1ff884860a4p153dd5jsn595cd3b79433")
             ?.observe(this) {
                 // ProgressD.hideProgressDialog()
 
@@ -411,7 +412,8 @@ private fun getTendaysWeather(strkey: String) {
 
         if (context != null) {
              //ProgressD.showLoading(context,getResources().getString(R.string.logging_in))
-            accountViewModel?.getHomeapgesunny(strkey, "wkw7ho4Gya6HakuE7dNcEVEHIVJMZAhU", "true")
+//            accountViewModel?.getHomeapgesunny(strkey, "wkw7ho4Gya6HakuE7dNcEVEHIVJMZAhU", "true")
+            accountViewModel?.getHomeapgesunny(strkey, "9d35100f47msh8c8f1ff884860a4p153dd5jsn595cd3b79433", "true")
                 ?.observe(requireActivity()) {
                    // ProgressD.hideProgressDialog()
                     binding.ivLoader.visibility=View.GONE
@@ -792,8 +794,8 @@ private fun getTendaysWeather(strkey: String) {
 
 
     private fun getuserprofile() {
-         lat = arguments?.getDouble("lat").toString()
-         long = arguments?.getDouble("long").toString()
+         lat = arguments?.getString("lat").toString()
+         long = arguments?.getString("long").toString()
 
         Log.e("Lat Long after search", lat);
       //  ProgressD.showLoading(context,getResources().getString(R.string.logging_in))

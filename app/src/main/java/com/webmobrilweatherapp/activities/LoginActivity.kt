@@ -126,41 +126,53 @@ class LoginActivity : AppCompatActivity() {
                     else {
                         // Fresh session for this account (e.g. switched from meteorologist)
                         CommonMethod.clearSharedWeatherLocationSession(this)
-                        if(it.data!!.selectButterfly.toString().equals("null"))
-                        {
-                            var a=0
-                            CommonMethod.getInstance(this).savePreference(AppConstant.Key_ID_Butterfly,"0")
 
-                            var intent = Intent(this, ButterflySpeicesActivity::class.java)
-                            intent.putExtra("checkStatus",a.toString())
-                            startActivity(intent)
+
+                        if(it.status=="400"){
+                            Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                         }
-                        else
-                        {
-                        //Toast.makeText(this, it.st, Toast.LENGTH_LONG).show()
+                        else{
+                            if(it.data!!.selectButterfly.toString().equals("null"))
+                            {
+                                var a=0
+                                CommonMethod.getInstance(this).savePreference(AppConstant.Key_ID_Butterfly,"0")
 
-                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                                var intent = Intent(this, ButterflySpeicesActivity::class.java)
+                                intent.putExtra("checkStatus",a.toString())
+                                startActivity(intent)
+                            }
+                            else
+                            {
+                                //Toast.makeText(this, it.st, Toast.LENGTH_LONG).show()
 
-                            CommonMethod.getInstance(this)
-                                .savePreference(AppConstant.Key_ApplicationId,"1")
+                                Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
 
-                        CommonMethod.getInstance(this)
-                            .savePreference(AppConstant.KEY_Fullname, it.data?.name!!)
-                        CommonMethod.getInstance(this)
-                            .savePreference(AppConstant.KEY_Email, it.data.email!!)
-                        CommonMethod.getInstance(this)
-                            .savePreference(AppConstant.USER_TYPE, it.data.userType!!)
-                        CommonMethod.getInstance(this)
-                            .savePreference(AppConstant.KEY_User_id, it.data.id!!)
-                        CommonMethod.getInstance(this)
-                            .savePreference(AppConstant.KEY_token, it.token!!)
-                        CommonMethod.getInstance(this)
-                            .savePreference(AppConstant.KEY_loginStatus, true)
-                        var intent = Intent(this, HomeActivity::class.java)
-                        intent.putExtra(AppConstant.USER_TYPE, usertype)
-                        startActivity(intent)
-                        finish()
+                                CommonMethod.getInstance(this)
+                                    .savePreference(AppConstant.Key_ApplicationId,"1")
+
+                                CommonMethod.getInstance(this)
+                                    .savePreference(AppConstant.KEY_Fullname, it.data?.name!!)
+                                CommonMethod.getInstance(this)
+                                    .savePreference(AppConstant.KEY_Email, it.data.email!!)
+                                CommonMethod.getInstance(this)
+                                    .savePreference(AppConstant.USER_TYPE, it.data.userType!!)
+                                CommonMethod.getInstance(this)
+                                    .savePreference(AppConstant.KEY_User_id, it.data.id!!)
+                                CommonMethod.getInstance(this)
+                                    .savePreference(AppConstant.KEY_token, it.token!!)
+                                CommonMethod.getInstance(this)
+                                    .savePreference(AppConstant.KEY_loginStatus, true)
+                                var intent = Intent(this, HomeActivity::class.java)
+                                intent.putExtra(AppConstant.USER_TYPE, usertype)
+                                startActivity(intent)
+                                finish()
+                            }
                         }
+
+
+
+
+
 
                     }
 
